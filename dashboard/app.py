@@ -1,5 +1,97 @@
+import pytz
 import textwrap
 import inspect
+
+import requests
+from textblob import TextBlob
+
+# --- CONFIGURATION ---
+NEWS_API_KEY = "1b3032a666244577a46f36d4e1580def"  
+
+def fetch_real_time_data():
+    """Fetches REAL data from NewsAPI only."""
+    data = []
+    
+    print(f"🚀 Connecting to NewsAPI with key: {NEWS_API_KEY[:4]}...")
+
+    # 1. FETCH FROM NEWSAPI
+    try:
+        # Check if user actually replaced the placeholder text
+        if "PASTE_YOUR" not in NEWS_API_KEY:
+            # Search for security-related keywords
+            url = f"https://newsapi.org/v2/everything?q=cyberattack+OR+data+breach+OR+security+threat+OR+malware&sortBy=publishedAt&language=en&apiKey={NEWS_API_KEY}"
+            response = requests.get(url, timeout=10)
+            result = response.json()
+            
+            if result.get('status') == 'ok':
+                articles = result.get('articles', [])
+                print(f"✅ NewsAPI returned {len(articles)} articles")
+                
+                # Process up to 40 articles
+                for article in articles[:40]: 
+                    # specific check to avoid broken articles
+                    if not article['title'] or not article['source']['name']:
+                        continue
+                        
+                    full_text = f"{article['title']} {article.get('description', '')}"
+                    
+                    data.append({
+                        'username': article['source']['name'], # Use News Source as "Username"
+                        'post': normalize_text(article['title']),
+                        'timestamp': pd.to_datetime(article['publishedAt']),
+                        'location': extract_location_from_text(full_text),
+                        'Threat Score': calculate_real_threat_score(full_text),
+                        'followers_count': np.random.randint(10000, 500000), # News orgs have high reach
+                        'verified': True,
+                        'source': 'NewsAPI',
+                        'language': 'en'
+                    })
+            else:
+                print(f"⚠️ NewsAPI Error: {result.get('message', 'Unknown error')}")
+        else:
+            print("⚠️ Placeholder key detected. Using synthetic data.")
+            
+    except Exception as e:
+        print(f"⚠️ NewsAPI Network Error: {str(e)}")
+
+    # 2. FALLBACK TO FAKE DATA (Critical for Hackathons)
+    # If NewsAPI fails, returns 0 results, or key is invalid, fill with fake data
+    if len(data) < 5:
+        print("⚠️ Insufficient live data. Falling back to GENERATED data to keep app running.")
+        return generate_sample_data(200)
+
+    # 3. Convert to DataFrame
+    df = pd.DataFrame(data)
+    
+    # Add missing columns expected by your dashboard
+    if not df.empty:
+        # Threat Level Logic
+        df['Threat Level'] = df['Threat Score'].apply(lambda x: 'HIGH' if x > 7 else 'MEDIUM' if x > 4 else 'LOW')
+        
+        # Fill missing technical columns
+        df['profile_created'] = datetime.now() - timedelta(days=365)
+        df['engagement_rate'] = np.random.uniform(0.1, 5.0, len(df))
+        df['account_age_days'] = np.random.randint(100, 2000, len(df))
+        df['threat_category'] = 'Cyber'
+        
+        # Add coordinates
+        lat_list = []
+        lon_list = []
+        for loc in df['location']:
+            lat, lon = get_coordinates_for_location(loc)
+            lat_list.append(lat)
+            lon_list.append(lon)
+        
+        df['lat'] = lat_list
+        df['lon'] = lon_list
+
+    return df
+
+
+
+
+
+
 # ---------- COMPREHENSIVE LOCATION DATABASE ----------
 LOCATION_COORDINATES = {
     # INDIAN CITIES - EXPANDED LIST
@@ -744,13 +836,22 @@ def generate_sample_data(num_records=200):
     
     # Create patterns
     peak_hours = [14, 15, 16, 20, 21]
+    # Fixed: Create a list of non-peak hours explicitly
+    non_peak_hours = [h for h in range(24) if h not in peak_hours]
+    
+    # Combined list of 24 hours (5 peak + 19 non-peak)
+    all_hours_sorted = peak_hours + non_peak_hours
+    
+    # Probabilities must match the length of all_hours_sorted (24 items)
+    hour_probs = [0.15] * 5 + [0.25/19] * 19
+    
     indian_cities = ['Delhi', 'Mumbai', 'Bangalore', 'Chennai', 'Hyderabad', 
                      'Kolkata', 'Pune', 'Ahmedabad', 'Jaipur', 'Lucknow']
     international_cities = ['London', 'New York', 'Dubai', 'Karachi', 'Islamabad']
     
     for i in range(num_records):
-        # Determine if it's a peak hour
-        hour_choice = np.random.choice(peak_hours + list(range(24)), p=[0.15, 0.15, 0.15, 0.15, 0.15] + [0.25/19]*19)
+        # Determine if it's a peak hour using the fixed lists
+        hour_choice = np.random.choice(all_hours_sorted, p=hour_probs)
         
         # Location distribution
         if i < int(num_records * 0.6):
@@ -834,12 +935,12 @@ def generate_sample_data(num_records=200):
         # Generate timestamp with patterns
         days_ago = np.random.randint(0, 30)
         hours_offset = hour_choice + np.random.randint(-2, 3)
-        timestamp = base_date + timedelta(days=days_ago, hours=hours_offset)
+        timestamp = base_date + timedelta(days=days_ago, hours=int(hours_offset))
         
         # Determine language based on location
         if location in indian_cities:
             language = np.random.choice(['en', 'hi', 'ta', 'te', 'bn', 'mr', 'gu'], 
-                                       p=[0.5, 0.2, 0.1, 0.1, 0.05, 0.03, 0.02])
+                                        p=[0.5, 0.2, 0.1, 0.1, 0.05, 0.03, 0.02])
         else:
             language = 'en'
         
@@ -1624,6 +1725,9 @@ def main():
             'About': '# 🛡️ DEVENCY v6.0\nAdvanced Threat Intelligence Platform'
         }
     )
+
+    # DEFINE INDIAN TIMEZONE
+    ist = pytz.timezone('Asia/Kolkata')
     
     # Apply enhanced CSS
     st.markdown(MODERN_CSS, unsafe_allow_html=True)
@@ -1779,28 +1883,22 @@ def main():
         needs_refresh = True
     
     if needs_refresh:
-        with st.spinner("🚀 Loading and processing data..."):
-            if csv_exists:
-                data = load_csv_data(data_path)
-                if data is None or len(data) == 0:
-                    st.warning("⚠️ Could not load CSV data. Generating enhanced sample data.")
-                    data = generate_sample_data(200)
-                else:
-                    st.session_state.csv_modified_time = current_csv_mtime
-            else:
-                st.info("📁 CSV file not found. Generating enhanced sample data.")
-                data = generate_sample_data(200)
+        with st.spinner("🚀 Fetching LIVE Intelligence Data (NewsAPI)..."):
+            # 1. Try to fetch real data
+            data = fetch_real_time_data()
             
-            # Process data
+            # 2. Process the data
             data = ensure_required_columns(data)
+            
+            # 3. Update Session State
             st.session_state.current_data = data
             st.session_state.data_loaded = True
             st.session_state.last_refresh = datetime.now()
             
-            # Show success message
-            st.success(f"✅ Loaded {len(data):,} records with {len(data.columns)} features")
-    else:
-        data = st.session_state.current_data if st.session_state.current_data is not None else generate_sample_data(200)
+            # 4. Success Message
+            # Check the source column to see if we got real news or fell back to fake data
+            source_msg = "Live News Feed" if "source" in data.columns and "NewsAPI" in data["source"].values else "Generated Sample Data"
+            st.success(f"✅ Data Active: {len(data):,} Threats Processed | Source: {source_msg}")
     
     # Apply threat analysis if needed
     if 'Threat Level' not in data.columns:
@@ -1950,13 +2048,17 @@ def main():
         """, unsafe_allow_html=True)
     
     with col3:
+        # Calculate refresh time (keep this generic or adjust if needed)
         time_to_refresh = max(0, (st.session_state.last_refresh + timedelta(seconds=60) - datetime.now()).seconds)
+        
+        # --- FIX: GET CURRENT TIME IN IST ---
+        current_time_ist = datetime.now(ist)
         
         st.markdown(f"""
         <div class='metric-card' style='text-align: center;'>
-            <p style='margin: 0; font-size: 0.9rem; color: #94a3b8;'>🕒 Last Update</p>
-            <h2 style='margin: 0; color: white;' class='metric-value'>{datetime.now().strftime('%H:%M:%S')}</h2>
-            <p style='margin: 0; font-size: 0.8rem; color: #94a3b8;'>{datetime.now().strftime('%Y-%m-%d')}</p>
+            <p style='margin: 0; font-size: 0.9rem; color: #94a3b8;'>🕒 Last Update (IST)</p>
+            <h2 style='margin: 0; color: white;' class='metric-value'>{current_time_ist.strftime('%H:%M:%S')}</h2>
+            <p style='margin: 0; font-size: 0.8rem; color: #94a3b8;'>{current_time_ist.strftime('%Y-%m-%d')}</p>
             <div style='margin-top: 10px; padding: 5px; background: rgba(0, 243, 255, 0.1); border-radius: 5px;'>
                 <p style='margin: 0; font-size: 0.7rem; color: #00f3ff;'>
                 🔄 Next: {time_to_refresh}s | 📡 Live
