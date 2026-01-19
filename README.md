@@ -5,7 +5,7 @@
 ![Plotly](https://img.shields.io/badge/Visualization-Plotly-3f4f75)
 ![Status](https://img.shields.io/badge/Status-Active-success)
 
-**DEVENCY** is a next-generation threat intelligence dashboard designed to monitor, visualize, and analyze global security threats in real-time. Built with a cyberpunk-inspired UI, it leverages AI-enhanced analytics to track social media signals, pinpoint geolocation hotspots, and predict emerging threat patterns.
+**DEVENCY** is a super next-generation threat intelligence dashboard designed to monitor, visualize, and analyze global security threats in real-time. Built with a cyberpunk-inspired UI, it leverages AI-enhanced analytics to track social media signals, pinpoint geolocation hotspots, and predict emerging threat patterns.
 
 ---
 
