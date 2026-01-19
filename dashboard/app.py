@@ -1790,15 +1790,29 @@ def main():
                         del st.session_state[key]
                 st.rerun()
         
+        # --- DYNAMIC SOURCE LABEL LOGIC ---
+        active_source = "📰 News API (Live)"
+        if st.session_state.current_data is not None and not st.session_state.current_data.empty:
+            if 'source' in st.session_state.current_data.columns:
+                # Check the source of the first record
+                src = st.session_state.current_data['source'].iloc[0]
+                if src == 'NewsAPI':
+                    active_source = "📰 News API (Live)"
+                elif src == 'Reddit':
+                    active_source = "🤖 Reddit (Live)"
+                else:
+                    active_source = "🎯 Synthetic Data"
+        
         # Data Source Info
         st.markdown(f"""
         <div style='background: rgba(16, 20, 31, 0.7); padding: 1rem; border-radius: 10px; margin: 1rem 0;'>
             <p style='margin: 0; color: #94a3b8; font-size: 0.9rem;'>
             <strong>📊 Data Source:</strong><br>
-            {'📁 CSV File' if csv_exists else '🎯 Generated Data'}<br>
-            <strong>🔄 Auto-refresh:</strong> Every 60s<br>
-            <strong>📅 Last Update:</strong><br>
-            {st.session_state.last_refresh.strftime('%Y-%m-%d %H:%M:%S')}
+            <span style='color: #00f3ff; font-weight: bold;'>{active_source}</span><br>
+            <br>
+            <strong>🔄 Auto-refresh:</strong> Manual/Cache<br>
+            <strong>📅 Last Update (IST):</strong><br>
+            {datetime.now(pytz.timezone('Asia/Kolkata')).strftime('%Y-%m-%d %H:%M:%S')}
             </p>
         </div>
         """, unsafe_allow_html=True)
