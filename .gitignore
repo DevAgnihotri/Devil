@@ -1,62 +1,17 @@
 # Virtual environments
 venv/
 .venv/
-ENV/
-env/
 
-# Python bytecode
+# Python cache
 __pycache__/
-*.py[cod]
-*$py.class
 *.pyc
-
-# Distribution / packaging
-build/
-dist/
-*.egg-info/
-.eggs/
-
-# Installer logs
-pip-log.txt
-pip-delete-this-directory.txt
-
-# Unit test / coverage
-.coverage
-.coverage.*
-.cache
-.pytest_cache/
-nosetests.xml
-coverage.xml
-*.cover
-
-# IDEs and editors
-.vscode/
-.idea/
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
 
 # OS files
 .DS_Store
 Thumbs.db
 
-# Secrets and environment files
-.env
-.envrc
-secrets.yml
-credentials.json
+# Streamlit
+.streamlit/
 
-# Jupyter
-.ipynb_checkpoints/
-
-# Logs
-*.log
-
-# C extensions
-*.so
-
-# Optional: ignore data files (uncomment if you don't want to track sample data)
-# data/*.csv
-# data/*.json
-# data/*.db
+# VS Code
+.vscode/

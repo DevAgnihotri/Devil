@@ -1,0 +1,23 @@
+{
+    "patterns": [
+        {
+            "original": "agent_x_real",
+            "fakes": ["agentx_real", "agent_x_official", "real_agent_x", "agentx_verified"],
+            "cloned_bio": "Official account of Agent X",
+            "profile_image_similarity": 0.85
+        },
+        {
+            "original": "secure_india",
+            "fakes": ["secureindia_official", "india_secure", "secured_india"],
+            "cloned_bio": "National Security Updates",
+            "profile_image_similarity": 0.92
+        }
+    ],
+    "fake_indicators": [
+        "recently_created",
+        "low_followers",
+        "username_variations",
+        "bio_similarity",
+        "profile_pic_copy"
+    ]
+}
