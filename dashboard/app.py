@@ -266,172 +266,175 @@ LOCATION_COORDINATES.update({
 # ---------- ENHANCED MODERN CSS ----------
 MODERN_CSS = """
 <style>
-/* Devency - Modern Minimal Theme */
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&family=IBM+Plex+Mono:wght@300;400&display=swap');
+/* DEVENCY - Red Tron Luxury Theme */
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@100;200;300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap');
 
 :root {
-    /* Fresh Coral & Charcoal Palette */
-    --accent-primary: #e07a5f;
-    --accent-secondary: #f2cc8f;
-    --accent-muted: rgba(224, 122, 95, 0.15);
-    --accent-glow: rgba(224, 122, 95, 0.25);
-    --bg-deep: #0d0d0d;
-    --bg-card: #141414;
-    --bg-elevated: #1a1a1a;
-    --bg-surface: #212121;
-    --border-subtle: rgba(255, 255, 255, 0.04);
-    --border-accent: rgba(224, 122, 95, 0.2);
-    --text-primary: #fafafa;
-    --text-secondary: #a3a3a3;
-    --text-muted: #666666;
-    --danger: #f87171;
-    --warning: #fbbf24;
-    --success: #34d399;
-    --info: #a78bfa;
-    --shadow-soft: 0 8px 32px rgba(0, 0, 0, 0.5);
-    --shadow-glow: 0 0 60px rgba(224, 122, 95, 0.08);
+    /* Red Tron Color Palette */
+    --tron-red: #dc2626;
+    --tron-red-dim: rgba(220, 38, 38, 0.15);
+    --tron-red-glow: rgba(220, 38, 38, 0.4);
+    --tron-red-bright: #ef4444;
+    --pure-black: #000000;
+    --carbon: #0a0a0a;
+    --obsidian: #0f0f0f;
+    --onyx: #141414;
+    --graphite: #1a1a1a;
+    --slate: #262626;
+    --pure-white: #ffffff;
+    --off-white: #fafafa;
+    --silver: #a1a1aa;
+    --steel: #71717a;
+    --border-dark: rgba(255, 255, 255, 0.06);
+    --border-red: rgba(220, 38, 38, 0.3);
+    --glow-red: 0 0 30px rgba(220, 38, 38, 0.15);
+    --glow-intense: 0 0 60px rgba(220, 38, 38, 0.25);
 }
 
-/* Global Reset & Base */
+/* Global Base - Pure Black */
 .stApp {
-    background: var(--bg-deep);
-    color: var(--text-primary);
-    font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--pure-black) !important;
+    color: var(--off-white);
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     font-weight: 400;
-    letter-spacing: 0.01em;
+    letter-spacing: -0.01em;
+    -webkit-font-smoothing: antialiased;
 }
 
 /* Main Container - Centered & Spacious */
 .main .block-container {
-    max-width: 1400px !important;
-    padding: 3rem 4rem !important;
+    max-width: 1200px !important;
+    padding: 2rem 3rem !important;
     margin: 0 auto;
 }
 
-/* Sidebar Styling */
+/* Sidebar - Dark Glass */
 section[data-testid="stSidebar"] {
-    background: var(--bg-card) !important;
-    border-right: 1px solid var(--border-subtle);
+    background: var(--carbon) !important;
+    border-right: 1px solid var(--border-dark);
 }
 
 section[data-testid="stSidebar"] > div {
-    padding: 2rem 1.5rem;
+    padding: 1.5rem;
 }
 
-/* Modern Header Card */
+/* Header Card - Tron Style */
 .cyber-header {
-    background: var(--bg-card);
-    border: 1px solid var(--border-subtle);
-    border-radius: 16px;
-    padding: 2rem 2.5rem;
-    margin: 1rem 0 2rem 0;
+    background: var(--obsidian);
+    border: 1px solid var(--border-dark);
+    border-radius: 12px;
+    padding: 1.5rem 2rem;
+    margin: 0.75rem 0;
     position: relative;
     overflow: hidden;
-    box-shadow: var(--shadow-soft);
 }
 
 .cyber-header::before {
     content: '';
     position: absolute;
     top: 0;
-    left: 2rem;
-    right: 2rem;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, var(--accent-primary), transparent);
-    opacity: 0.6;
-    border-radius: 2px;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--tron-red), transparent);
 }
 
-/* Modern Cards */
+/* Cards - Minimal Dark */
 .cyber-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border-subtle);
-    border-radius: 16px;
-    padding: 1.75rem;
-    margin: 1rem 0;
-    transition: all 0.3s ease;
-    box-shadow: var(--shadow-soft);
+    background: var(--obsidian);
+    border: 1px solid var(--border-dark);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin: 0.75rem 0;
+    transition: all 0.2s ease;
 }
 
 .cyber-card:hover {
-    transform: translateY(-4px);
-    border-color: var(--border-accent);
-    box-shadow: var(--shadow-glow);
+    border-color: var(--border-red);
+    box-shadow: var(--glow-red);
 }
 
-/* Metric Cards - Clean & Modern */
+/* Metric Cards - Tron Grid Style */
 .metric-card {
-    background: linear-gradient(145deg, var(--bg-card), var(--bg-elevated));
-    border-radius: 16px;
-    padding: 1.5rem 1.75rem;
-    border: 1px solid var(--border-subtle);
-    transition: all 0.3s ease;
+    background: var(--obsidian);
+    border: 1px solid var(--border-dark);
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
     position: relative;
-    overflow: hidden;
-    box-shadow: var(--shadow-soft);
+    transition: all 0.2s ease;
+}
+
+.metric-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 1.5rem;
+    right: 1.5rem;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--tron-red-dim), transparent);
 }
 
 .metric-card:hover {
-    transform: translateY(-4px);
-    border-color: var(--border-accent);
+    border-color: var(--border-red);
+    box-shadow: var(--glow-red);
 }
 
-/* Threat Level Badges - Pill Style */
+/* Threat Badges - Red Tron */
 .threat-high {
-    background: rgba(248, 113, 113, 0.15);
-    color: var(--danger);
-    padding: 0.4rem 1rem;
-    border-radius: 20px;
+    background: var(--tron-red-dim);
+    color: var(--tron-red-bright);
+    padding: 0.35rem 0.85rem;
+    border-radius: 4px;
     font-weight: 500;
-    font-size: 0.7rem;
-    letter-spacing: 0.06em;
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
-    border: 1px solid rgba(248, 113, 113, 0.3);
+    border: 1px solid var(--border-red);
 }
 
 .threat-medium {
-    background: rgba(251, 191, 36, 0.15);
-    color: var(--warning);
-    padding: 0.4rem 1rem;
-    border-radius: 20px;
+    background: rgba(251, 191, 36, 0.1);
+    color: #fbbf24;
+    padding: 0.35rem 0.85rem;
+    border-radius: 4px;
     font-weight: 500;
-    font-size: 0.7rem;
-    letter-spacing: 0.06em;
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
     border: 1px solid rgba(251, 191, 36, 0.3);
 }
 
 .threat-low {
-    background: rgba(52, 211, 153, 0.15);
-    color: var(--success);
-    padding: 0.4rem 1rem;
-    border-radius: 20px;
+    background: rgba(34, 197, 94, 0.1);
+    color: #22c55e;
+    padding: 0.35rem 0.85rem;
+    border-radius: 4px;
     font-weight: 500;
-    font-size: 0.7rem;
-    letter-spacing: 0.06em;
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
-    border: 1px solid rgba(52, 211, 153, 0.3);
+    border: 1px solid rgba(34, 197, 94, 0.3);
 }
 
 .threat-predicted {
-    background: rgba(167, 139, 250, 0.15);
-    color: var(--info);
-    padding: 0.4rem 1rem;
-    border-radius: 20px;
+    background: rgba(220, 38, 38, 0.1);
+    color: #dc2626;
+    padding: 0.35rem 0.85rem;
+    border-radius: 4px;
     font-weight: 500;
-    font-size: 0.7rem;
-    letter-spacing: 0.06em;
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
-    border: 1px solid rgba(167, 139, 250, 0.3);
+    border: 1px solid rgba(220, 38, 38, 0.3);
 }
 
 /* Prediction Card */
 .prediction-card {
-    background: linear-gradient(145deg, rgba(167, 139, 250, 0.05), var(--bg-card));
-    border: 1px solid rgba(167, 139, 250, 0.15);
-    border-radius: 16px;
-    padding: 2rem;
-    margin: 1.5rem 0;
+    background: linear-gradient(135deg, rgba(220, 38, 38, 0.05), var(--obsidian));
+    border: 1px solid rgba(220, 38, 38, 0.2);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin: 1rem 0;
     position: relative;
 }
 
@@ -439,59 +442,58 @@ section[data-testid="stSidebar"] > div {
     content: '';
     position: absolute;
     top: 0;
-    left: 2rem;
-    right: 2rem;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, var(--info), transparent);
-    opacity: 0.4;
+    left: 1.5rem;
+    right: 1.5rem;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #dc2626, transparent);
+    opacity: 0.5;
 }
 
-/* Modern Buttons */
+/* Buttons - Red Tron */
 .stButton > button {
-    background: var(--accent-muted);
-    color: var(--accent-primary);
-    border: 1px solid var(--border-accent);
-    border-radius: 10px;
-    padding: 0.65rem 1.5rem;
+    background: var(--tron-red-dim) !important;
+    color: var(--tron-red-bright) !important;
+    border: 1px solid var(--border-red) !important;
+    border-radius: 8px;
+    padding: 0.6rem 1.25rem;
     font-weight: 500;
-    font-family: 'Space Grotesk', sans-serif;
-    letter-spacing: 0.03em;
+    font-family: 'Geist', sans-serif;
     font-size: 0.8rem;
-    transition: all 0.25s ease;
+    transition: all 0.2s ease;
 }
 
 .stButton > button:hover {
-    background: rgba(224, 122, 95, 0.25);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 16px rgba(224, 122, 95, 0.2);
+    background: rgba(220, 38, 38, 0.25) !important;
+    box-shadow: var(--glow-red);
+    transform: translateY(-1px);
 }
 
-/* Minimal Scrollbar */
+/* Scrollbar - Minimal */
 ::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
+    width: 6px;
+    height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-    background: var(--bg-deep);
+    background: var(--pure-black);
 }
 
 ::-webkit-scrollbar-thumb {
-    background: var(--bg-surface);
-    border-radius: 4px;
+    background: var(--slate);
+    border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: var(--text-muted);
+    background: var(--steel);
 }
 
-/* Modern Tabs */
+/* Tabs - Tron Style */
 .stTabs [data-baseweb="tab-list"] {
-    gap: 8px;
-    background: var(--bg-card);
-    padding: 8px;
-    border-radius: 12px;
-    border: 1px solid var(--border-subtle);
+    gap: 0;
+    background: var(--obsidian);
+    padding: 4px;
+    border-radius: 10px;
+    border: 1px solid var(--border-dark);
 }
 
 .stTabs [data-baseweb="tab"] {
@@ -500,45 +502,37 @@ section[data-testid="stSidebar"] > div {
     border: none;
     padding: 10px 20px;
     font-weight: 500;
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Geist', sans-serif;
     font-size: 0.8rem;
-    color: var(--text-muted);
-    transition: all 0.25s ease;
+    color: var(--steel);
+    transition: all 0.2s ease;
 }
 
 .stTabs [data-baseweb="tab"]:hover {
-    color: var(--text-secondary);
-    background: var(--bg-elevated);
+    color: var(--silver);
+    background: var(--graphite);
 }
 
 .stTabs [aria-selected="true"] {
-    background: var(--accent-muted) !important;
-    color: var(--accent-primary) !important;
+    background: var(--tron-red-dim) !important;
+    color: var(--tron-red-bright) !important;
 }
 
 /* Progress Bar */
 .stProgress > div > div > div > div {
-    background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
-    border-radius: 4px;
-}
-
-/* Metric Value */
-.metric-value {
-    font-size: 2rem;
-    font-weight: 500;
-    font-family: 'Space Grotesk', sans-serif;
-    color: var(--text-primary);
+    background: linear-gradient(90deg, var(--tron-red), var(--tron-red-bright));
+    border-radius: 2px;
 }
 
 /* Section Header */
 .section-header {
     position: relative;
-    padding-left: 14px;
-    margin: 2rem 0 1.25rem 0;
-    color: var(--text-primary);
+    padding-left: 12px;
+    margin: 1.5rem 0 1rem 0;
+    color: var(--off-white);
     font-weight: 500;
-    font-size: 0.85rem;
-    letter-spacing: 0.04em;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
 }
 
@@ -548,53 +542,54 @@ section[data-testid="stSidebar"] > div {
     left: 0;
     top: 50%;
     transform: translateY(-50%);
-    width: 4px;
-    height: 16px;
-    background: var(--accent-primary);
+    width: 3px;
+    height: 14px;
+    background: var(--tron-red);
     border-radius: 2px;
+    box-shadow: 0 0 8px var(--tron-red-glow);
 }
 
 /* Grid Cards */
 .grid-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border-subtle);
-    border-radius: 12px;
-    padding: 1rem 1.25rem;
-    transition: all 0.25s ease;
+    background: var(--obsidian);
+    border: 1px solid var(--border-dark);
+    border-radius: 10px;
+    padding: 1rem;
+    transition: all 0.2s ease;
 }
 
 .grid-card:hover {
-    border-color: var(--border-accent);
-    transform: translateY(-2px);
+    border-color: var(--border-red);
+    box-shadow: var(--glow-red);
 }
 
-/* Custom Grid Container */
+/* Custom Grid - 3 columns */
 .custom-grid-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 12px;
-    padding: 4px;
 }
 
 /* Location Card */
 .location-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border-subtle);
-    border-radius: 12px;
+    background: var(--obsidian);
+    border: 1px solid var(--border-dark);
+    border-left: 2px solid var(--tron-red);
+    border-radius: 8px;
     padding: 1rem;
     margin-bottom: 8px;
-    transition: all 0.25s ease;
+    transition: all 0.2s ease;
 }
 
 .location-card:hover {
-    border-color: var(--border-accent);
-    transform: translateX(4px);
+    background: var(--onyx);
+    border-color: var(--border-red);
+    box-shadow: var(--glow-red);
 }
 
-/* Floating Animation - Subtle */
-@keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-4px); }
+/* Full Width Charts */
+.stPlotlyChart {
+    width: 100% !important;
 }
 
 /* Custom Scroll */
@@ -603,22 +598,39 @@ section[data-testid="stSidebar"] > div {
     overflow-y: auto;
 }
 
-/* Fix for charts */
-.plotly-chart-container {
-    position: relative;
-    width: 100%;
+/* Tron Grid Lines Animation */
+@keyframes tronPulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.6; }
 }
 
-/* Timeline container */
-.timeline-container {
-    height: 400px;
+/* Hide Streamlit Branding */
+#MainMenu {visibility: hidden;}
+footer {visibility: hidden;}
+header {visibility: hidden;}
+
+/* Input Fields */
+.stTextInput > div > div > input,
+.stSelectbox > div > div,
+.stMultiSelect > div > div {
+    background: var(--obsidian) !important;
+    border: 1px solid var(--border-dark) !important;
+    border-radius: 8px !important;
+    color: var(--off-white) !important;
 }
 
-/* Location cards container */
-.location-cards-container {
-    max-height: 500px;
-    overflow-y: auto;
-    padding-right: 8px;
+/* Expander */
+.streamlit-expanderHeader {
+    background: var(--obsidian) !important;
+    border: 1px solid var(--border-dark) !important;
+    border-radius: 8px !important;
+}
+
+/* DataFrame */
+.dataframe {
+    background: var(--obsidian) !important;
+    border: 1px solid var(--border-dark) !important;
+    border-radius: 8px !important;
 }
 </style>
 """
@@ -1273,7 +1285,7 @@ def create_threat_distribution_chart(data):
         go.Histogram(
             x=data['Threat Score'],
             nbinsx=20,
-            marker_color='#667eea',
+            marker_color='#dc2626',
             name='Threat Scores',
             hovertemplate='Score: %{x}<br>Count: %{y}<extra></extra>'
         ),
@@ -1338,8 +1350,8 @@ def create_location_analysis(data):
             y=top_locations['Avg Score'],
             yaxis='y2',
             mode='lines+markers',
-            line=dict(color='#e07a5f', width=2),
-            marker=dict(size=6, color='#e07a5f'),
+            line=dict(color='#dc2626', width=2),
+            marker=dict(size=6, color='#dc2626'),
             name='Avg Threat Score',
             hovertemplate='Avg Score: %{y:.1f}<extra></extra>'
         )
@@ -1669,14 +1681,14 @@ def main():
         # Header with modern styling
         st.markdown("""
         <div class='cyber-header' style='text-align: center; padding: 2rem;'>
-            <div style='width: 48px; height: 48px; background: linear-gradient(135deg, #e07a5f, #f2cc8f); border-radius: 12px; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center;'>
+            <div style='width: 48px; height: 48px; background: linear-gradient(135deg, #dc2626, #ef4444); border-radius: 12px; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center;'>
                 <span style='font-size: 1.5rem;'>🛡️</span>
             </div>
             <h2 style='color: #fafafa; margin: 0; font-weight: 500; letter-spacing: 0.02em; font-size: 1.4rem;'>Devency</h2>
             <p style='color: #a3a3a3; font-size: 0.75rem; margin: 0.5rem 0 0 0;'>
             Threat Intelligence Platform
             </p>
-            <span style='display: inline-block; margin-top: 0.75rem; background: rgba(224, 122, 95, 0.15); color: #e07a5f; padding: 4px 12px; border-radius: 20px; font-size: 0.7rem; font-weight: 500;'>v6.0 • AI-Enhanced</span>
+            <span style='display: inline-block; margin-top: 0.75rem; background: rgba(220, 38, 38, 0.15); color: #dc2626; padding: 4px 12px; border-radius: 20px; font-size: 0.7rem; font-weight: 500;'>v6.0 • AI-Enhanced</span>
         </div>
         """, unsafe_allow_html=True)
         
@@ -1787,7 +1799,7 @@ def main():
             </div>
             <div style='display: flex; justify-content: space-between; align-items: center; background: #1a1a1a; padding: 10px 14px; border-radius: 8px;'>
                 <span style='color: #666; font-size: 0.75rem;'>Next refresh</span>
-                <span style='color: #e07a5f; font-size: 1rem; font-weight: 600;'>{time_remaining}s</span>
+                <span style='color: #dc2626; font-size: 1rem; font-weight: 600;'>{time_remaining}s</span>
             </div>
         </div>
         """
@@ -1956,7 +1968,7 @@ def main():
     st.markdown("""
     <div style='text-align: center; padding: 2rem 0 3rem 0;'>
         <div style='display: inline-flex; align-items: center; gap: 12px; margin-bottom: 8px;'>
-            <div style='width: 40px; height: 40px; background: linear-gradient(135deg, #e07a5f, #f2cc8f); border-radius: 10px; display: flex; align-items: center; justify-content: center;'>
+            <div style='width: 40px; height: 40px; background: linear-gradient(135deg, #dc2626, #ef4444); border-radius: 10px; display: flex; align-items: center; justify-content: center;'>
                 <span style='font-size: 1.25rem;'>🛡️</span>
             </div>
             <h1 style='margin: 0; color: #fafafa; font-size: 1.75rem; font-weight: 600; letter-spacing: 0.01em;'>Devency</h1>
@@ -1985,7 +1997,7 @@ def main():
                 <div style='width: 1px; height: 40px; background: rgba(255,255,255,0.06);'></div>
                 <div>
                     <div style='color: #666; font-size: 0.7rem; margin-bottom: 4px;'>Next Refresh</div>
-                    <div style='color: #e07a5f; font-size: 1.5rem; font-weight: 600;'>{time_to_refresh}s</div>
+                    <div style='color: #dc2626; font-size: 1.5rem; font-weight: 600;'>{time_to_refresh}s</div>
                 </div>
             </div>
         </div>
@@ -1997,45 +2009,43 @@ def main():
     # KPI Metrics Section - Centered Title
     st.markdown("""
     <div style='text-align: center; margin-bottom: 1.5rem;'>
-        <span style='background: rgba(224, 122, 95, 0.15); color: #e07a5f; padding: 6px 16px; border-radius: 20px; font-size: 0.75rem; font-weight: 500;'>
-            Overview
+        <span style='background: rgba(220, 38, 38, 0.15); color: #dc2626; padding: 6px 16px; border-radius: 4px; font-size: 0.65rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; border: 1px solid rgba(220, 38, 38, 0.3);'>
+            System Overview
         </span>
     </div>
     """, unsafe_allow_html=True)
     
-    # Create metrics columns
-    metric_cols = st.columns(6)
-    
+    # Metrics data
     metrics_data = [
         {
             'label': 'Total Threats',
             'value': f"{len(filtered_data):,}",
             'change': f"+{len(filtered_data) - len(data) if len(filtered_data) > len(data) else '0'}",
-            'icon': '🌍',
-            'color': '#e07a5f',
+            'icon': '◉',
+            'color': '#dc2626',
             'trend': 'up' if len(filtered_data) > len(data) else 'stable'
         },
         {
             'label': 'High Threats',
             'value': f"{len(filtered_data[filtered_data['Threat Level'] == 'HIGH']):,}",
             'change': 'Critical',
-            'icon': '⚠️',
-            'color': '#f87171',
+            'icon': '▲',
+            'color': '#ef4444',
             'trend': 'critical'
         },
         {
             'label': 'Active Locations',
             'value': f"{filtered_data['location'].nunique():,}",
             'change': f"{filtered_data['location'].nunique() - data['location'].nunique() if filtered_data['location'].nunique() > data['location'].nunique() else '0'}",
-            'icon': '📍',
-            'color': '#f2cc8f',
+            'icon': '◎',
+            'color': '#dc2626',
             'trend': 'up' if filtered_data['location'].nunique() > data['location'].nunique() else 'stable'
         },
         {
             'label': 'Avg Threat Score',
             'value': f"{filtered_data['Threat Score'].mean():.1f}",
             'change': f"{filtered_data['Threat Score'].mean() - data['Threat Score'].mean():+.1f}",
-            'icon': '📊',
+            'icon': '◆',
             'color': '#fbbf24',
             'trend': 'up' if filtered_data['Threat Score'].mean() > data['Threat Score'].mean() else 'down'
         },
@@ -2043,139 +2053,149 @@ def main():
             'label': 'Verified Accounts',
             'value': f"{filtered_data['verified'].sum():,}",
             'change': f"{filtered_data['verified'].sum() - data['verified'].sum():+}",
-            'icon': '✓',
-            'color': '#34d399',
+            'icon': '◇',
+            'color': '#22c55e',
             'trend': 'up' if filtered_data['verified'].sum() > data['verified'].sum() else 'down'
         },
         {
             'label': 'Data Coverage',
             'value': f"{(len(filtered_data) / len(data) * 100 if len(data) > 0 else 0):.0f}%",
             'change': 'Complete',
-            'icon': '📈',
-            'color': '#a78bfa',
+            'icon': '○',
+            'color': '#dc2626',
             'trend': 'complete'
         }
     ]
     
-    for i, metric in enumerate(metrics_data):
-        with metric_cols[i]:
-            trend_icon = "📈" if metric['trend'] == 'up' else "📉" if metric['trend'] == 'down' else "➡️" if metric['trend'] == 'stable' else "⚠️"
-            
+    # First row - 3 metrics
+    metric_cols_row1 = st.columns(3)
+    for i in range(3):
+        metric = metrics_data[i]
+        with metric_cols_row1[i]:
             metric_html = f"""
-            <div class='metric-card' style='border-color: {metric['color']}40;'>
-                <div style='display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;'>
-                    <span style='font-size: 1.8rem;'>{metric['icon']}</span>
-                    <span style='font-size: 0.8rem; color: {metric['color']}; background: {metric['color']}20; padding: 2px 8px; border-radius: 10px;'>
-                        {trend_icon} {metric['change']}
+            <div class='metric-card'>
+                <div style='display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;'>
+                    <span style='font-size: 1.2rem; color: {metric['color']};'>{metric['icon']}</span>
+                    <span style='font-size: 0.65rem; color: {metric['color']}; background: {metric['color']}15; padding: 3px 10px; border-radius: 4px; letter-spacing: 0.05em; border: 1px solid {metric['color']}30;'>
+                        {metric['change']}
                     </span>
                 </div>
-                <h3 style='margin: 0; color: white; font-size: 1.8rem;'>{metric['value']}</h3>
-                <p style='margin: 5px 0 0 0; color: #94a3b8; font-size: 0.9rem;'>{metric['label']}</p>
+                <h3 style='margin: 0; color: #fafafa; font-size: 2rem; font-weight: 500; font-family: Geist, sans-serif;'>{metric['value']}</h3>
+                <p style='margin: 8px 0 0 0; color: #71717a; font-size: 0.75rem; letter-spacing: 0.05em; text-transform: uppercase;'>{metric['label']}</p>
             </div>
             """
             st.markdown(metric_html, unsafe_allow_html=True)
     
-    # Main Content Area
-    col1, col2 = st.columns([2.5, 1])
+    # Small spacing
+    st.markdown("<div style='height: 12px;'></div>", unsafe_allow_html=True)
     
-    with col1:
-        # Map Header
-        map_header_html = f"""
-        <div style="
-            background: #141414;
-            border: 1px solid rgba(255, 255, 255, 0.04);
-            border-radius: 16px;
-            padding: 1.5rem;
-            margin-bottom: 1rem;
-            text-align: center;">
-            
-            <div style="display: inline-flex; align-items: center; gap: 10px; margin-bottom: 8px;">
-                <span style="font-size: 1.25rem;">🗺️</span>
-                <h3 style="margin: 0; color: #fafafa; font-size: 1rem; font-weight: 500;">
-                    Global Threat Map
-                </h3>
+    # Second row - 3 metrics
+    metric_cols_row2 = st.columns(3)
+    for i in range(3, 6):
+        metric = metrics_data[i]
+        with metric_cols_row2[i - 3]:
+            metric_html = f"""
+            <div class='metric-card'>
+                <div style='display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;'>
+                    <span style='font-size: 1.2rem; color: {metric['color']};'>{metric['icon']}</span>
+                    <span style='font-size: 0.65rem; color: {metric['color']}; background: {metric['color']}15; padding: 3px 10px; border-radius: 4px; letter-spacing: 0.05em; border: 1px solid {metric['color']}30;'>
+                        {metric['change']}
+                    </span>
+                </div>
+                <h3 style='margin: 0; color: #fafafa; font-size: 2rem; font-weight: 500; font-family: Geist, sans-serif;'>{metric['value']}</h3>
+                <p style='margin: 8px 0 0 0; color: #71717a; font-size: 0.75rem; letter-spacing: 0.05em; text-transform: uppercase;'>{metric['label']}</p>
             </div>
-            
-            <div style="margin-top: 8px;">
-                <span style="
-                    background: rgba(224, 122, 95, 0.15); 
-                    color: #e07a5f; 
-                    padding: 6px 14px; 
-                    border-radius: 20px; 
-                    font-size: 0.75rem; 
-                    font-weight: 500;">
-                    {len(filtered_data):,} Active Threats
-                </span>
-            </div>
-        </div>
-        """.replace('\n', ' ')
+            """
+            st.markdown(metric_html, unsafe_allow_html=True)
+    
+    # Main Content Area - Map Section (Full Width)
+    # Map Header - Isolated
+    map_header_html = f"""
+    <div style="
+        background: #141414;
+        border: 1px solid rgba(220, 38, 38, 0.15);
+        border-radius: 16px;
+        padding: 1.5rem;
+        margin: 2rem 0 1rem 0;
+        text-align: center;">
         
-        st.markdown(map_header_html, unsafe_allow_html=True)
-
-        # --- 2. THE MAP (Glitch Free) ---
-        fig_map = create_dynamic_map(filtered_data)
-        
-        # FIX: Instead of title=None, we use an empty string and zero height to remove "undefined"
-        fig_map.update_layout(
-            title=dict(text="", font=dict(size=1)), # Hides title safely
-            margin=dict(t=0, l=0, r=0, b=0)         # Removes top whitespace
-        )
-        
-        st.plotly_chart(
-            fig_map,
-            use_container_width=True,
-            config={
-                "displayModeBar": "hover",
-                "displaylogo": False
-            }
-        )
-    with col2:
-        # 1. HEADER BOX (Fixed: No Blue Line)
-        timeline_header_html = f"""
-        <div style="
-            background: linear-gradient(90deg, rgba(16, 20, 31, 0.95) 0%, rgba(30, 35, 50, 0.95) 100%);
-            border: 1px solid rgba(0, 243, 255, 0.2);
-            border-radius: 15px;
-            padding: 15px;
-            margin-top: 20px;            /* Aligned with map margin */
-            margin-bottom: 0px;
-            text-align: center;
-            box-shadow: 0 0 20px rgba(0, 243, 255, 0.1);
-            position: relative;
-            overflow: hidden;">
-            
-            <h3 style="margin: 0; color: white; letter-spacing: 1px; font-size: 1.2rem;">
-                📈 THREAT EVOLUTION TIMELINE
+        <div style="display: inline-flex; align-items: center; gap: 10px;">
+            <span style="font-size: 1.25rem;">🗺️</span>
+            <h3 style="margin: 0; color: #fafafa; font-size: 1rem; font-weight: 500;">
+                Global Threat Map
             </h3>
         </div>
-        """.replace('\n', ' ')
         
-        st.markdown(timeline_header_html, unsafe_allow_html=True)
+        <div style="margin-top: 10px;">
+            <span style="
+                background: rgba(220, 38, 38, 0.15); 
+                color: #dc2626; 
+                padding: 6px 14px; 
+                border-radius: 20px; 
+                font-size: 0.75rem; 
+                font-weight: 500;
+                border: 1px solid rgba(220, 38, 38, 0.3);">
+                {len(filtered_data):,} Active Threats
+            </span>
+        </div>
+    </div>
+    """.replace('\n', ' ')
+    
+    st.markdown(map_header_html, unsafe_allow_html=True)
 
-        # 3. TIMELINE GRAPH
-        fig_timeline = create_threat_timeline(filtered_data)
+    # THE MAP (Full Width)
+    fig_map = create_dynamic_map(filtered_data)
+    
+    fig_map.update_layout(
+        title=dict(text="", font=dict(size=1)),
+        margin=dict(t=0, l=0, r=0, b=0)
+    )
+    
+    st.plotly_chart(
+        fig_map,
+        use_container_width=True,
+        config={
+            "displayModeBar": "hover",
+            "displaylogo": False
+        }
+    )
+    
+    # Timeline Section (Full Width, Below Map)
+    timeline_header_html = f"""
+    <div style="
+        background: #141414;
+        border: 1px solid rgba(220, 38, 38, 0.15);
+        border-radius: 16px;
+        padding: 1.5rem;
+        margin: 2rem 0 1rem 0;
+        text-align: center;">
         
-        fig_timeline.update_layout(
-            title=dict(text="", font=dict(size=1)),
-            margin=dict(t=30, l=10, r=10, b=10)
-        )
-        
-        st.plotly_chart(
-            fig_timeline,
-            use_container_width=True,
-            config={"displayModeBar": "hover", "displaylogo": False}
-        )
-    # --- FIXED HEADER: ICON AND TEXT SIDE-BY-SIDE ---
-    # --- FIXED HEADER: ICON AND TEXT SIDE-BY-SIDE ---
-    # --- FIXED HEADER: ICON AND TEXT SIDE-BY-SIDE ---
-    # --- FIXED HEADER: Renders HTML correctly ---
-    # --- FIXED HEADER: ICON AND TEXT SIDE-BY-SIDE ---
-    # --- FIXED HEADER ---
-    # --- FIXED HEADER: Uses textwrap.dedent to fix indentation bug ---
-    # --- FIXED HEADER: Uses textwrap to strip indentation ---
-    # --- FIXED HEADER: Uses textwrap to strip indentation ---
-    # --- FIXED HEADER: Flattened HTML to prevent indentation bugs ---
-    custom_html = """<div style="margin-top: 60px; margin-bottom: 20px; padding: 20px; background: linear-gradient(90deg, rgba(16, 20, 31, 0.95) 0%, rgba(30, 35, 50, 0.95) 100%); border-radius: 15px; border: 1px solid rgba(0, 243, 255, 0.2); box-shadow: 0 0 20px rgba(0, 243, 255, 0.1); display: flex; align-items: center; gap: 20px;"><div style="font-size: 2.5rem; line-height: 1;">🔍</div><div><h3 style="margin: 0; color: white; letter-spacing: 1px; font-size: 1.3rem; line-height: 1.2;">ADVANCED THREAT ANALYSIS & INSIGHTS</h3><p style="margin: 4px 0 0 0; color: #94a3b8; font-size: 0.9rem;">Deep dive into active threat vectors and regional data</p></div></div>"""
+        <div style="display: inline-flex; align-items: center; gap: 10px;">
+            <span style="font-size: 1.25rem;">📈</span>
+            <h3 style="margin: 0; color: #fafafa; font-size: 1rem; font-weight: 500;">
+                Threat Evolution Timeline
+            </h3>
+        </div>
+    </div>
+    """.replace('\n', ' ')
+    
+    st.markdown(timeline_header_html, unsafe_allow_html=True)
+
+    # Timeline Graph (Full Width)
+    fig_timeline = create_threat_timeline(filtered_data)
+    
+    fig_timeline.update_layout(
+        title=dict(text="", font=dict(size=1)),
+        margin=dict(t=30, l=10, r=10, b=10)
+    )
+    
+    st.plotly_chart(
+        fig_timeline,
+        use_container_width=True,
+        config={"displayModeBar": "hover", "displaylogo": False}
+    )
+    # Advanced Analysis Header
+    custom_html = """<div style="margin-top: 3rem; margin-bottom: 1.5rem; padding: 1.5rem; background: #141414; border-radius: 16px; border: 1px solid rgba(220, 38, 38, 0.15); display: flex; align-items: center; gap: 16px;"><div style="width: 48px; height: 48px; background: rgba(220, 38, 38, 0.15); border-radius: 12px; display: flex; align-items: center; justify-content: center;"><span style="font-size: 1.5rem;">🔍</span></div><div><h3 style="margin: 0; color: #fafafa; font-size: 1.1rem; font-weight: 500;">Advanced Threat Analysis</h3><p style="margin: 4px 0 0 0; color: #71717a; font-size: 0.8rem;">Deep dive into active threat vectors and regional data</p></div></div>"""
     
     st.markdown(custom_html, unsafe_allow_html=True)
     
@@ -2255,7 +2275,7 @@ def main():
                 <div class="grid-card">
                     <div style="display:flex; justify-content:space-between; align-items:start;">
                         <div style="display:flex; align-items:center; gap:8px;">
-                            <span style="background:rgba(224,122,95,0.15); color:#e07a5f; width:22px; height:22px; 
+                            <span style="background:rgba(220,38,38,0.15); color:#dc2626; width:22px; height:22px; 
                                          display:flex; align-items:center; justify-content:center; border-radius:6px; 
                                          font-size:0.7rem; font-weight:500;">{idx+1}</span>
                             <span style="color:#fafafa; font-size:0.8rem; font-weight:500;">{loc_name}</span>
@@ -2303,7 +2323,7 @@ def main():
             <div style='margin-top: 1rem; padding: 1rem; background: #141414; border-radius: 12px; 
                         display: flex; justify-content: space-around; text-align: center; border: 1px solid rgba(255,255,255,0.04);'>
                 <div><div style='color:#666; font-size:0.7rem;'>Critical</div><div style='color:#fafafa; font-weight:500; font-size:1.1rem;'>{total_critical:,}</div></div>
-                <div><div style='color:#666; font-size:0.7rem;'>Avg Score</div><div style='color:#e07a5f; font-weight:500; font-size:1.1rem;'>{avg_score:.1f}</div></div>
+                <div><div style='color:#666; font-size:0.7rem;'>Avg Score</div><div style='color:#dc2626; font-weight:500; font-size:1.1rem;'>{avg_score:.1f}</div></div>
                 <div><div style='color:#666; font-size:0.7rem;'>Hotspots</div><div style='color:#fafafa; font-weight:500; font-size:1.1rem;'>{len(location_stats):,}</div></div>
             </div>
             """.replace('\n', ' ')
@@ -2429,28 +2449,28 @@ def main():
             intl_count = len(filtered_data) - indian_count
             
             st.markdown(f"""
-            <div style='background: #141414; padding: 24px; border-radius: 16px; text-align: center; border: 1px solid rgba(224,122,95,0.15);'>
-                <div style='width: 48px; height: 48px; background: linear-gradient(135deg, #e07a5f 0%, #f2cc8f 100%); border-radius: 12px; margin: 0 auto 16px; display: flex; align-items: center; justify-content: center;'>
+            <div style='background: #141414; padding: 24px; border-radius: 16px; text-align: center; border: 1px solid rgba(220,38,38,0.15);'>
+                <div style='width: 48px; height: 48px; background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%); border-radius: 12px; margin: 0 auto 16px; display: flex; align-items: center; justify-content: center;'>
                     <span style='font-size: 1.2rem;'>🇮🇳</span>
                 </div>
                 <h3 style='margin: 0 0 8px 0; color: rgba(255,255,255,0.95); font-weight: 600; font-size: 2rem;'>{indian_count:,}</h3>
                 <p style='margin: 0; color: rgba(255,255,255,0.5); font-size: 0.85rem;'>Indian Threats</p>
-                <div style='margin-top: 12px; padding: 6px 12px; background: rgba(224,122,95,0.1); border-radius: 20px; display: inline-block;'>
-                    <span style='font-size: 0.8rem; color: #e07a5f; font-weight: 500;'>{(indian_count/len(filtered_data)*100 if len(filtered_data) > 0 else 0):.1f}% of total</span>
+                <div style='margin-top: 12px; padding: 6px 12px; background: rgba(220,38,38,0.1); border-radius: 20px; display: inline-block;'>
+                    <span style='font-size: 0.8rem; color: #dc2626; font-weight: 500;'>{(indian_count/len(filtered_data)*100 if len(filtered_data) > 0 else 0):.1f}% of total</span>
                 </div>
             </div>
             """, unsafe_allow_html=True)
         
         with col2:
             st.markdown(f"""
-            <div style='background: #141414; padding: 24px; border-radius: 16px; text-align: center; border: 1px solid rgba(224,122,95,0.15);'>
-                <div style='width: 48px; height: 48px; background: linear-gradient(135deg, #a78bfa 0%, #f2cc8f 100%); border-radius: 12px; margin: 0 auto 16px; display: flex; align-items: center; justify-content: center;'>
+            <div style='background: #141414; padding: 24px; border-radius: 16px; text-align: center; border: 1px solid rgba(220,38,38,0.15);'>
+                <div style='width: 48px; height: 48px; background: rgba(220, 38, 38, 0.15); border-radius: 12px; margin: 0 auto 16px; display: flex; align-items: center; justify-content: center;'>
                     <span style='font-size: 1.2rem;'>🌍</span>
                 </div>
                 <h3 style='margin: 0 0 8px 0; color: rgba(255,255,255,0.95); font-weight: 600; font-size: 2rem;'>{intl_count:,}</h3>
                 <p style='margin: 0; color: rgba(255,255,255,0.5); font-size: 0.85rem;'>International Threats</p>
                 <div style='margin-top: 12px; padding: 6px 12px; background: rgba(167,139,250,0.1); border-radius: 20px; display: inline-block;'>
-                    <span style='font-size: 0.8rem; color: #a78bfa; font-weight: 500;'>{(intl_count/len(filtered_data)*100 if len(filtered_data) > 0 else 0):.1f}% of total</span>
+                    <span style='font-size: 0.8rem; color: #dc2626; font-weight: 500;'>{(intl_count/len(filtered_data)*100 if len(filtered_data) > 0 else 0):.1f}% of total</span>
                 </div>
             </div>
             """, unsafe_allow_html=True)
@@ -2460,7 +2480,7 @@ def main():
             top_regions = filtered_data['location'].value_counts().head(5)
             
             st.markdown(f"""
-            <div style='background: #141414; padding: 24px; border-radius: 16px; border: 1px solid rgba(224,122,95,0.15);'>
+            <div style='background: #141414; padding: 24px; border-radius: 16px; border: 1px solid rgba(220,38,38,0.15);'>
                 <h4 style='margin: 0 0 16px 0; color: rgba(255,255,255,0.95); text-align: center; font-weight: 600; font-size: 1rem;'>Top 5 Regions</h4>
                 <div style='max-height: 200px; overflow-y: auto;'>
             """, unsafe_allow_html=True)
@@ -2472,10 +2492,10 @@ def main():
                 <div style='padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.05);'>
                     <div style='display: flex; justify-content: space-between; align-items: center;'>
                         <span style='color: rgba(255,255,255,0.85); font-size: 0.85rem;'>{location_display}</span>
-                        <span style='color: #e07a5f; font-weight: 600;'>{count:,}</span>
+                        <span style='color: #dc2626; font-weight: 600;'>{count:,}</span>
                     </div>
                     <div style='background: rgba(255,255,255,0.05); height: 4px; border-radius: 4px; margin-top: 6px;'>
-                        <div style='background: linear-gradient(90deg, #e07a5f, #f2cc8f); width: {percentage}%; height: 100%; border-radius: 4px;'></div>
+                        <div style='background: linear-gradient(90deg, #dc2626, #ef4444); width: {percentage}%; height: 100%; border-radius: 4px;'></div>
                     </div>
                 </div>
                 """, unsafe_allow_html=True)
@@ -2501,7 +2521,7 @@ def main():
                     }.get(insight['confidence'], '#94a3b8')
                     
                     st.markdown(f"""
-                    <div style='background: #141414; border: 1px solid rgba(224,122,95,0.15); 
+                    <div style='background: #141414; border: 1px solid rgba(220,38,38,0.15); 
                                 border-radius: 16px; padding: 1.5rem; margin: 0.5rem 0;'>
                         <div style='display: flex; align-items: center; gap: 12px; margin-bottom: 12px;'>
                             <span style='font-size: 1.5rem;'>{insight['type']}</span>
@@ -2514,8 +2534,8 @@ def main():
                         <p style='margin: 10px 0 0 0; color: rgba(255,255,255,0.6); font-size: 0.95rem; line-height: 1.5;'>
                         {insight['description']}
                         </p>
-                        <div style='margin-top: 16px; padding: 12px; background: rgba(224,122,95,0.08); 
-                                    border-radius: 12px; border-left: 3px solid #e07a5f;'>
+                        <div style='margin-top: 16px; padding: 12px; background: rgba(220,38,38,0.08); 
+                                    border-radius: 12px; border-left: 3px solid #dc2626;'>
                             <span style='color: rgba(255,255,255,0.6); font-size: 0.85rem;'>🎯 Recommended Action:</span><br>
                             <span style='color: white; font-size: 0.9rem;'>{insight['impact']}</span>
                         </div>
