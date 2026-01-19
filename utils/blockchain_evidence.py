@@ -12,7 +12,7 @@ class BlockchainEvidenceLedger:
     Tamper-proof evidence chain for legal proceedings
     """
     
-    def __init__(self, chain_name="DEVIL_EVIDENCE_CHAIN"):
+    def __init__(self, chain_name="DEVENCY_EVIDENCE_CHAIN"):
         self.chain = []
         self.chain_name = chain_name
         self.initialize_genesis_block()
@@ -23,7 +23,7 @@ class BlockchainEvidenceLedger:
             'index': 0,
             'timestamp': datetime.datetime.now().isoformat(),
             'evidence': {
-                'description': 'Genesis Block - DEVIL Evidence Chain Initialization',
+                'description': 'Genesis Block - DEVENCY Evidence Chain Initialization',
                 'case_id': 'GENESIS-2024-001',
                 'agency': 'National Cyber Security Coordinator',
                 'purpose': 'Initialize tamper-proof evidence ledger'
@@ -51,7 +51,7 @@ class BlockchainEvidenceLedger:
             'description': evidence_data.get('description', ''),
             'digital_signature': self._create_digital_signature(evidence_data),
             'witnesses': evidence_data.get('witnesses', []),
-            'collecting_officer': evidence_data.get('collecting_officer', 'DEVIL AI System'),
+            'collecting_officer': evidence_data.get('collecting_officer', 'DEVENCY AI System'),
             'hash_evidence': self._hash_evidence_content(evidence_data)
         }
         
@@ -141,7 +141,7 @@ class BlockchainEvidenceLedger:
         return {
             'signature_method': 'SHA256-RSA (Simulated)',
             'signature': hashlib.sha256(evidence_string.encode()).hexdigest(),
-            'signing_authority': 'DEVIL Digital Evidence System',
+            'signing_authority': 'DEVENCY Digital Evidence System',
             'timestamp_signed': datetime.datetime.now().isoformat(),
             'public_key': 'MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA' + '...'  # Truncated
         }
@@ -177,7 +177,7 @@ class BlockchainEvidenceLedger:
             'district': 'National Capital Territory',
             'state': 'Delhi',
             'date_time_lodged': datetime.datetime.now().isoformat(),
-            'complainant': 'DEVIL National Security System',
+            'complainant': 'DEVENCY National Security System',
             'accused_details': [],
             'case_details': {
                 'case_id': case_id,
@@ -258,7 +258,7 @@ class BlockchainEvidenceLedger:
                 'certificate_id': f'BC-CERT-{hashlib.sha256(case_id.encode()).hexdigest()[:16]}',
                 'issuing_authority': 'National Forensic Sciences University',
                 'validity_period': 'PERMANENT',
-                'verification_url': 'https://verify.DEVIL.gov.in/blockchain',
+                'verification_url': 'https://verify.DEVENCY.gov.in/blockchain',
                 'qr_code_data': f"VERIFY|{case_id}|{self.chain[-1]['hash']}"
             },
             'digital_evidence_files': [
@@ -277,7 +277,7 @@ class BlockchainEvidenceLedger:
             'witness_statements': [
                 {
                     'witness_id': f'WIT{idx:03d}',
-                    'name': 'DEVIL AI System',
+                    'name': 'DEVENCY AI System',
                     'affidavit': 'I hereby certify that the attached digital evidence has been collected, preserved, and presented in its original form without any tampering or modification.',
                     'digital_signature': block['evidence']['digital_signature']
                 }

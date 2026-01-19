@@ -1614,14 +1614,14 @@ def load_csv_data(data_path):
 def main():
     # Page config with enhanced settings
     st.set_page_config(
-        page_title="🚀 DEVIL | Advanced Threat Intelligence Platform",
+        page_title="🚀 DEVENCY | Advanced Threat Intelligence Platform",
         page_icon="🛡️",
         layout="wide",
         initial_sidebar_state="expanded",
         menu_items={
-            'Get Help': 'https://github.com/DEVIL',
-            'Report a bug': 'https://github.com/DEVIL/issues',
-            'About': '# 🛡️ DEVIL v6.0\nAdvanced Threat Intelligence Platform'
+            'Get Help': 'https://github.com/DEVENCY',
+            'Report a bug': 'https://github.com/DEVENCY/issues',
+            'About': '# 🛡️ DEVENCY v6.0\nAdvanced Threat Intelligence Platform'
         }
     )
     
@@ -1659,7 +1659,7 @@ def main():
         st.markdown("""
         <div class='cyber-header' style='text-align: center; padding: 1.5rem; margin-bottom: 2rem;'>
             <h1 style='color: #00f3ff; margin: 0; font-size: 2.5rem;'>🛡️</h1>
-            <h2 style='color: white; margin: 0.5rem 0;'>DEVIL</h2>
+            <h2 style='color: white; margin: 0.5rem 0;'>DEVENCY</h2>
             <p style='color: #94a3b8; font-size: 0.9rem; margin: 0;'>
             Advanced Threat Intelligence Platform<br>
             <span style='color: #9d50bb; font-size: 0.8rem;'>v6.0 • AI-Enhanced</span>
@@ -1672,13 +1672,15 @@ def main():
         
         col1, col2 = st.columns(2)
         with col1:
-            if st.button("🔄 Refresh Data", width='stretch', use_container_width=True, type="primary"):
+            # ✅ CORRECT
+            if st.button("🔄 Refresh Data", use_container_width=True, type="primary"):
                 st.session_state.data_loaded = False
                 st.session_state.csv_modified_time = None
                 st.rerun()
         
         with col2:
-            if st.button("🧹 Clear Cache", width='stretch', use_container_width=True):
+            # ✅ CORRECT
+            if st.button("🧹 Clear Cache", use_container_width=True):
                 for key in ['data_loaded', 'current_data', 'csv_modified_time']:
                     if key in st.session_state:
                         del st.session_state[key]
@@ -1717,16 +1719,17 @@ def main():
         st.markdown("**📍 Quick Location Filters**")
         col1, col2 = st.columns(2)
         with col1:
-            if st.button("🇮🇳 India Only", width='stretch', use_container_width=True):
+            # ✅ Fixed
+            if st.button("🇮🇳 India Only", use_container_width=True):
                 st.session_state.location_filter = 'india'
         with col2:
-            if st.button("🌍 International", width='stretch', use_container_width=True):
+            # ✅ Fixed
+            if st.button("🌍 International", use_container_width=True):
                 st.session_state.location_filter = 'international'
-        
         # Export Section
         st.markdown("<div class='section-header'>💾 DATA EXPORT</div>", unsafe_allow_html=True)
         
-        if st.button("📥 Export All Data", width='stretch', use_container_width=True, type="secondary"):
+        if st.button("📥 Export All Data", use_container_width=True, type="secondary"):
             if st.session_state.current_data is not None:
                 csv_data = st.session_state.current_data.to_csv(index=False)
                 st.session_state.export_data = csv_data
@@ -1750,7 +1753,7 @@ def main():
         
         status_html = f"""
         <div style='background: linear-gradient(135deg, rgba(0, 170, 0, 0.1), rgba(0, 100, 0, 0.1)); 
-                    padding: 1rem; border-radius: 10px; border-left: 4px solid #00aa00;'>
+                    padding: 1rem; border-radius: 10px; border-left: 4px solid #00aa00; margin-bottom: 20px;'>
             <div style='display: flex; justify-content: space-between; align-items: center;'>
                 <div>
                     <strong style='color: white;'>🟢 OPERATIONAL</strong><br>
@@ -1936,7 +1939,7 @@ def main():
     with col1:
         st.markdown("""
         <div class='cyber-header' style='padding: 1.5rem;'>
-            <h1 style='margin: 0; color: #00f3ff; font-size: 2.2rem;'>DEVIL</h1>
+            <h1 style='margin: 0; color: #00f3ff; font-size: 2.2rem;'>DEVENCY</h1>
             <p style='margin: 0.3rem 0; color: #94a3b8; font-size: 1rem;'>
             Advanced Threat Intelligence Platform
             </p>
@@ -2043,14 +2046,18 @@ def main():
     with col1:
         # --- 1. FLEXBOX HEADER (Fixed Spacing & No "Undefined") ---
         # Added 'margin-top: 40px' to push it away from the metric cards above
+        # --- 1. FLEXBOX HEADER (Fixed Spacing) ---
+        # --- 1. FLEXBOX HEADER (Fixed Spacing) ---
+        # --- 1. FLEXBOX HEADER (Cleaner, No Blue Line) ---
+        # --- 1. FLEXBOX HEADER (Fixed: No Blue Line + Added Spacing) ---
         map_header_html = f"""
         <div style="
             background: linear-gradient(90deg, rgba(16, 20, 31, 0.95) 0%, rgba(30, 35, 50, 0.95) 100%);
             border: 1px solid rgba(0, 243, 255, 0.2);
             border-radius: 15px;
             padding: 20px;
-            margin-top: 40px;           /* <--- FIX: Pushes map down to prevent overlap */
-            margin-bottom: 20px;
+            margin-top: 20px;
+            margin-bottom: 20px;           /* <--- FIX: Adds space between Heading and Map */
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -2059,8 +2066,6 @@ def main():
             box-shadow: 0 0 20px rgba(0, 243, 255, 0.1);
             position: relative;
             overflow: hidden;">
-            
-            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: linear-gradient(90deg, transparent, #00f3ff, transparent);"></div>
             
             <h3 style="margin: 0; color: white; letter-spacing: 1px; font-size: 1.4rem; line-height: 1.2;">
                 🌍 GLOBAL THREAT INTELLIGENCE MAP
@@ -2100,20 +2105,20 @@ def main():
             }
         )
     with col2:
-        # 1. HEADER BOX
+        # 1. HEADER BOX (Fixed: No Blue Line)
         timeline_header_html = f"""
         <div style="
             background: linear-gradient(90deg, rgba(16, 20, 31, 0.95) 0%, rgba(30, 35, 50, 0.95) 100%);
             border: 1px solid rgba(0, 243, 255, 0.2);
             border-radius: 15px;
             padding: 15px;
-            margin-top: 40px;
-            margin-bottom: 0px;  /* Removed bottom margin to keep it tight */
+            margin-top: 20px;            /* Aligned with map margin */
+            margin-bottom: 0px;
             text-align: center;
             box-shadow: 0 0 20px rgba(0, 243, 255, 0.1);
             position: relative;
             overflow: hidden;">
-            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: linear-gradient(90deg, transparent, #00f3ff, transparent);"></div>
+            
             <h3 style="margin: 0; color: white; letter-spacing: 1px; font-size: 1.2rem;">
                 📈 THREAT EVOLUTION TIMELINE
             </h3>
@@ -2135,25 +2140,19 @@ def main():
             use_container_width=True,
             config={"displayModeBar": "hover", "displaylogo": False}
         )
-    st.markdown("""
-    <div style="
-        margin-top: 60px;              /* <--- This margin pushes it down below the graph */
-        margin-bottom: 20px;
-        padding: 20px; 
-        background: linear-gradient(90deg, rgba(16, 20, 31, 0.95) 0%, rgba(30, 35, 50, 0.95) 100%); 
-        border-radius: 15px; 
-        border: 1px solid rgba(0, 243, 255, 0.2);
-        box-shadow: 0 0 20px rgba(0, 243, 255, 0.1);
-        display: flex;
-        align-items: center;
-        gap: 15px;">
-        <span style="font-size: 2rem;">🔍</span>
-        <div>
-            <h3 style="margin: 0; color: white; letter-spacing: 1px;">ADVANCED THREAT ANALYSIS & INSIGHTS</h3>
-            <p style="margin: 0; color: #94a3b8; font-size: 0.9rem;">Deep dive into active threat vectors and regional data</p>
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
+    # --- FIXED HEADER: ICON AND TEXT SIDE-BY-SIDE ---
+    # --- FIXED HEADER: ICON AND TEXT SIDE-BY-SIDE ---
+    # --- FIXED HEADER: ICON AND TEXT SIDE-BY-SIDE ---
+    # --- FIXED HEADER: Renders HTML correctly ---
+    # --- FIXED HEADER: ICON AND TEXT SIDE-BY-SIDE ---
+    # --- FIXED HEADER ---
+    # --- FIXED HEADER: Uses textwrap.dedent to fix indentation bug ---
+    # --- FIXED HEADER: Uses textwrap to strip indentation ---
+    # --- FIXED HEADER: Uses textwrap to strip indentation ---
+    # --- FIXED HEADER: Flattened HTML to prevent indentation bugs ---
+    custom_html = """<div style="margin-top: 60px; margin-bottom: 20px; padding: 20px; background: linear-gradient(90deg, rgba(16, 20, 31, 0.95) 0%, rgba(30, 35, 50, 0.95) 100%); border-radius: 15px; border: 1px solid rgba(0, 243, 255, 0.2); box-shadow: 0 0 20px rgba(0, 243, 255, 0.1); display: flex; align-items: center; gap: 20px;"><div style="font-size: 2.5rem; line-height: 1;">🔍</div><div><h3 style="margin: 0; color: white; letter-spacing: 1px; font-size: 1.3rem; line-height: 1.2;">ADVANCED THREAT ANALYSIS & INSIGHTS</h3><p style="margin: 4px 0 0 0; color: #94a3b8; font-size: 0.9rem;">Deep dive into active threat vectors and regional data</p></div></div>"""
+    
+    st.markdown(custom_html, unsafe_allow_html=True)
     
     # Create tabs for different analyses
     tab1, tab2, tab3, tab4, tab5 = st.tabs([
@@ -2371,7 +2370,8 @@ def main():
             """, unsafe_allow_html=True)
             
             # Export account data
-            if st.button("📥 Export Account Data", width='stretch', use_container_width=True):
+            # Added unique key='tab2_export'
+            if st.button("📥 Export Account Data", use_container_width=True, key='tab2_export'):
                 account_csv = account_stats.to_csv(index=False)
                 st.download_button(
                     label="⬇️ Download Account CSV",
@@ -2569,7 +2569,8 @@ def main():
                 index=0
             )
             
-            if st.button("🔄 Generate Export", width='stretch', use_container_width=True, type="primary"):
+            # Added unique key='tab5_export'
+            if st.button("📥 Export Account Data", use_container_width=True, key='tab5_export'):
                 with st.spinner(f"Generating {export_format} export..."):
                     # Prepare data based on selections
                     export_data = filtered_data[include_columns] if include_columns else filtered_data
@@ -2609,7 +2610,7 @@ def main():
                     else:  # PDF Report
                         # Generate a simple text report for PDF
                         report_content = f"""
-                        DEVIL Threat Intelligence Report
+                        DEVENCY Threat Intelligence Report
                         Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
                         Data Range: {data_range}
                         Total Records: {len(export_data):,}
@@ -2684,7 +2685,7 @@ def main():
     footer_cols = st.columns(4)
     
     with footer_cols[0]:
-        st.markdown("**🛡️ DEVIL v6.0**")
+        st.markdown("**🛡️ DEVENCY v6.0**")
         st.markdown("Advanced Threat Intelligence")
     
     with footer_cols[1]:

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-DEVIL Launch Script
+DEVENCY Launch Script
 Run with: python run.py
 """
 
@@ -9,7 +9,7 @@ import sys
 import subprocess
 
 def main():
-    print("🚀 Launching DEVIL Threat Intelligence System")
+    print("🚀 Launching DEVENCY Threat Intelligence System")
     print("=" * 50)
     
     # Check requirements
@@ -33,7 +33,7 @@ def main():
         # Run streamlit
         os.system("streamlit run dashboard/app.py")
     except KeyboardInterrupt:
-        print("\n👋 Shutting down DEVIL")
+        print("\n👋 Shutting down DEVENCY")
     except Exception as e:
         print(f"❌ Error: {e}")
 

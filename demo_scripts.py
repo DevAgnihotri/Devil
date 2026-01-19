@@ -11,7 +11,7 @@ def demo_script_5_minutes():
     🎯 **5-MINUTE DEMONSTRATION SCRIPT**
     
     1. INTRODUCTION (30 seconds):
-    "Good morning judges! Today, we present DEVIL - India's first 
+    "Good morning judges! Today, we present DEVENCY - India's first 
     AI-powered predictive national security platform that turns 1.4 billion 
     Indians into a human firewall."
     
@@ -74,7 +74,7 @@ def demo_script_winning_lines():
     """
     lines = [
         "🌟 From reactive to predictive security - saving lives BEFORE threats happen!",
-        "🇮🇳 22 languages, 1.4 billion Indians, 1 security shield - DEVIL!",
+        "🇮🇳 22 languages, 1.4 billion Indians, 1 security shield - DEVENCY!",
         "🤖 AI that understands India - in every language, every region, every context!",
         "👥 Turning every citizen into a security volunteer through responsible tech!",
         "🛡️ Protecting India's tomorrow with India's technology today!",
