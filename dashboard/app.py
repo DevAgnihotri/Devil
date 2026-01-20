@@ -30,21 +30,28 @@ def fetch_real_time_data():
                 # Process up to 40 articles
                 for article in articles[:40]: 
                     # specific check to avoid broken articles
-                    if not article['title'] or not article['source']['name']:
+                    if not article.get('title') or not article.get('source', {}).get('name'):
                         continue
-                        
-                    full_text = f"{article['title']} {article.get('description', '')}"
-                    
+
+                    full_text = f"{article.get('title', '')} {article.get('description', '')} {article.get('content', '')}"
+
                     data.append({
-                        'username': article['source']['name'], # Use News Source as "Username"
-                        'post': normalize_text(article['title']),
-                        'timestamp': pd.to_datetime(article['publishedAt']),
+                        'username': article.get('source', {}).get('name', 'Unknown'), # Use News Source as "Username"
+                        'post': normalize_text(article.get('title', '')),
+                        'timestamp': pd.to_datetime(article.get('publishedAt')),
                         'location': extract_location_from_text(full_text),
                         'Threat Score': calculate_real_threat_score(full_text),
                         'followers_count': np.random.randint(10000, 500000), # News orgs have high reach
                         'verified': True,
                         'source': 'NewsAPI',
-                        'language': 'en'
+                        'language': article.get('language', 'en'),
+                        # Additional NewsAPI metadata for UI
+                        'author': article.get('author', ''),
+                        'article_url': article.get('url', ''),
+                        'image_url': article.get('urlToImage', ''),
+                        'description': article.get('description', ''),
+                        'content': article.get('content', ''),
+                        'source_id': article.get('source', {}).get('id', '')
                     })
             else:
                 print(f"⚠️ NewsAPI Error: {result.get('message', 'Unknown error')}")
@@ -56,8 +63,9 @@ def fetch_real_time_data():
 
     # 2. FALLBACK TO FAKE DATA (Critical for Hackathons)
     # If NewsAPI fails, returns 0 results, or key is invalid, fill with fake data
-    if len(data) < 5:
-        print("⚠️ Insufficient live data. Falling back to GENERATED data to keep app running.")
+    # Allow small live sets to pass through so UI can still show real articles
+    if len(data) == 0:
+        print("⚠️ No live articles. Falling back to GENERATED data to keep app running.")
         return generate_sample_data(200)
 
     # 3. Convert to DataFrame
@@ -237,6 +245,7 @@ import sys
 import os
 import time
 import random
+import json
 from collections import Counter
 
 # ---------- CONFIGURATION ----------
@@ -2740,30 +2749,164 @@ def main():
             """, unsafe_allow_html=True)
     
     st.markdown("</div>", unsafe_allow_html=True)
-    
-    # ---------- FOOTER ----------
+
+    # ---------- SECURITY NEWS SECTION ----------
     st.markdown("---")
+    st.markdown("### 📰 Security News")
     
-    footer_cols = st.columns(4)
+    # Load demo news (always shows)
+    demo_news = load_demo_news_from_json()
     
-    with footer_cols[0]:
-        st.markdown("**🛡️ DEVENCY v6.0**")
-        st.markdown("Advanced Threat Intelligence")
+    # Also check if we have live NewsAPI rows
+    if 'source' in filtered_data.columns:
+        live_news = filtered_data[filtered_data['source'] == 'NewsAPI']
+        if not live_news.empty:
+            demo_news = pd.concat([live_news, demo_news], ignore_index=True)
     
-    with footer_cols[1]:
-        st.markdown("**🌍 Coverage**")
-        st.markdown(f"{filtered_data['location'].nunique():,} locations")
-        st.markdown(f"{len(filtered_data):,} threats monitored")
-    
-    with footer_cols[2]:
-        st.markdown("**📡 System Status**")
-        st.markdown("🟢 All Systems Operational")
-        st.markdown(f"Next refresh: {time_to_refresh}s")
-    
-    with footer_cols[3]:
-        st.markdown("**🚀 Performance**")
-        st.markdown("99.9% Uptime")
-        st.markdown("<5ms Response Time")
+    if demo_news.empty:
+        st.info("No security news available at the moment.")
+    else:
+        # Show up to 6 cards in 2 columns - TRON STYLE
+        cards = demo_news.sort_values('timestamp', ascending=False).head(6)
+        news_cols = st.columns(2)
+        
+        for i, (_, row) in enumerate(cards.iterrows()):
+            col = news_cols[i % 2]
+            title = row.get('post') or row.get('description') or 'Untitled'
+            url = row.get('article_url', '') or '#'
+            img = row.get('image_url', '') or 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=600&h=300&fit=crop'
+            author = row.get('author', '') or 'Security Analyst'
+            desc = row.get('description', '') or 'Click to read the full security briefing.'
+            ts = row.get('timestamp')
+            source_name = row.get('username', 'Security Feed')
+            
+            # Format timestamp
+            try:
+                time_str = pd.to_datetime(ts).strftime('%b %d, %Y') if not pd.isna(ts) else 'Recent'
+            except:
+                time_str = 'Recent'
+            
+            # Truncate description
+            if len(desc) > 150:
+                desc = desc[:150] + '...'
+            
+            # Simple card using Streamlit native components
+            with col:
+                st.markdown(f"""
+                <div style="background:linear-gradient(145deg,#070809,#0b0b0d);border-radius:16px;overflow:hidden;margin-bottom:20px;border:1px solid rgba(0,212,255,0.12);box-shadow:0 4px 18px rgba(0,0,0,0.35);">
+                    <img src="{img}" style="width:100%;height:160px;object-fit:cover;">
+                    <div style="padding:16px;">
+                        <div style="background:rgba(0,212,255,0.15);display:inline-block;padding:4px 10px;border-radius:12px;margin-bottom:10px;">
+                            <span style="color:#00d4ff;font-size:0.7rem;font-weight:600;text-transform:uppercase;">{source_name}</span>
+                        </div>
+                        <h4 style="margin:0 0 10px 0;color:#e2e8f0;font-size:1rem;line-height:1.4;">{title}</h4>
+                        <p style="margin:0 0 12px 0;color:#94a3b8;font-size:0.8rem;line-height:1.5;">{desc}</p>
+                        <div style="display:flex;justify-content:space-between;padding-top:10px;border-top:1px solid rgba(0,212,255,0.1);">
+                            <span style="color:#64748b;font-size:0.7rem;">✍️ {author}</span>
+                            <span style="color:#00d4ff;font-size:0.7rem;">{time_str}</span>
+                        </div>
+                    </div>
+                </div>
+                """, unsafe_allow_html=True)
+                
+                # Add clickable link button
+                st.link_button("🔗 Read Article", url, use_container_width=True)
+
+def load_demo_news_from_json():
+    """Load bundled demo NewsAPI-like articles and map to dashboard schema."""
+    try:
+        demo_path = os.path.join(BASE_DIR, 'data', 'news_demo.json')
+        if not os.path.exists(demo_path):
+            return pd.DataFrame()
+        with open(demo_path, 'r', encoding='utf-8') as f:
+            articles = json.load(f)
+    except Exception:
+        return pd.DataFrame()
+
+    rows = []
+    fallback_locations = [
+        'London, UK', 'New York, USA', 'Delhi, India', 'Singapore', 'Tokyo, Japan',
+        'San Francisco, USA', 'Berlin, Germany', 'Sydney, Australia'
+    ]
+
+    for art in articles:
+        title = art.get('title', '')
+        desc = art.get('description', '')
+        content = art.get('content', '')
+        full_text = f"{title} {desc} {content}"
+        timestamp = pd.to_datetime(art.get('publishedAt', datetime.now()))
+        location = art.get('location') or random.choice(fallback_locations)
+
+        rows.append({
+            'username': art.get('source', {}).get('name', 'News Source'),
+            'post': title.strip(),
+            'timestamp': timestamp,
+            'location': location,
+            'Threat Score': random.uniform(4, 9),
+            'followers_count': np.random.randint(10000, 500000),
+            'verified': True,
+            'source': 'NewsAPI',
+            'language': art.get('language', 'en'),
+            'author': art.get('author', ''),
+            'article_url': art.get('url', ''),
+            'image_url': art.get('urlToImage', ''),
+            'description': desc,
+            'content': content,
+            'source_id': art.get('source', {}).get('id', '')
+        })
+
+    return pd.DataFrame(rows)
+
+def render_security_news_section(df):
+    """Render security-focused NewsAPI article cards at the end of the page."""
+    # Filter NewsAPI-sourced rows
+    if df is None or df.empty:
+        news_df = pd.DataFrame()
+    else:
+        news_df = df[df['source'] == 'NewsAPI'] if 'source' in df.columns else pd.DataFrame()
+
+    # Always merge in demo news so section never stays empty
+    demo_df = load_demo_news_from_json()
+    if demo_df is not None and not demo_df.empty:
+        news_df = pd.concat([news_df, demo_df], ignore_index=True)
+
+    if news_df.empty:
+        return
+
+    st.markdown("\n\n---\n\n")
+    st.markdown("### 📰 Security News")
+
+    # Show up to 8 cards in 2 columns
+    cards = news_df.sort_values('timestamp', ascending=False).head(8)
+    cols = st.columns(2)
+
+    for i, (_, row) in enumerate(cards.iterrows()):
+        col = cols[i % 2]
+        title = row.get('post') or row.get('description') or 'Untitled'
+        url = row.get('article_url', '')
+        img = row.get('image_url', '')
+        author = row.get('author', '')
+        desc = row.get('description', '')
+        ts = row.get('timestamp')
+
+        # Small card HTML
+        card_html = f"""
+        <div style='background:#0b1220;border-radius:8px;padding:12px;margin-bottom:12px;border:1px solid rgba(255,255,255,0.04);'>
+            <div style='display:flex;gap:10px;'>
+                <div style='flex:0 0 100px;'>
+                    <img src='{img or "https://via.placeholder.com/120x80?text=No+Image"}' style='width:100px;height:70px;object-fit:cover;border-radius:6px;' />
+                </div>
+                <div style='flex:1;'>
+                    <div style='font-weight:600;font-size:0.95rem;'><a href='{url or "#"}' target='_blank' style='color:#e2e8f0;text-decoration:none;'>{title}</a></div>
+                    <div style='color:#94a3b8;font-size:0.8rem;margin-top:6px;'>{(desc[:200] + "...") if desc and len(desc) > 200 else (desc or "No description")}</div>
+                    <div style='color:#6b7280;font-size:0.75rem;margin-top:8px;'>{author or row.get('username','')} • {pd.to_datetime(ts).strftime('%Y-%m-%d %H:%M') if not pd.isna(ts) else ''}</div>
+                </div>
+            </div>
+        </div>
+        """
+
+        col.markdown(card_html, unsafe_allow_html=True)
+
 
 if __name__ == "__main__":
     main()

@@ -1,0 +1,74 @@
+[
+  {
+    "source": {"id": "wired", "name": "WIRED"},
+    "author": "Lily Hay Newman",
+    "title": "US Hackers Reportedly Caused a Blackout in Venezuela",
+    "description": "As Immigration and Customs Enforcement continues its “Operation Metro Surge” infiltration of Minnesota, more than 2,000 ICE operatives and about 1,000 other federal agents have made more than 2,400 arrests since the operation began in late 2025, and tear gassed protesters. Last week, an ICE agent shot and killed local resident Renee Nicole Good, a 37-year-old US citizen.",
+    "url": "https://www.wired.com/story/security-news-this-week-us-hackers-reportedly-caused-a-blackout-in-venezuela/",
+    "urlToImage": "https://media.wired.com/photos/696a7b1549952104223e5bcb/16:9/w_1600,c_limit/sec-venezuela-us-blackout-1157311680.jpg",
+    "publishedAt": "2026-01-18T12:30:00Z",
+    "content": "Plus: AI reportedly caused ICE to send agents into the field without training, Palantir’s app for targeting immigrants gets exposed, and more.",
+    "language": "en",
+    "location": "Boston, USA"
+  },
+  {
+    "source": {"id": "krebsonsecurity", "name": "KrebsOnSecurity"},
+    "author": "Brian Krebs",
+    "title": "BYTECONNECT, PLAINPROXIES, AND 3XK TECH",
+    "description": "a user by the name “Richard Remington” briefly appeared in the group’s Telegram server to post a crude “Happy New Year” sketch that claims Dort and Snow are now in control of 3.5 million devices infected by Aisuru and/or Kimwolf.",
+    "url": "https://krebsonsecurity.com/2026/01/who-benefited-from-the-aisuru-and-kimwolf-botnets/#more-72999",
+    "urlToImage": "https://krebsonsecurity.com/wp-content/uploads/2026/01/dort-snow-kimwolf-aisuru.png",
+    "publishedAt": "2026-01-17T08:10:00Z",
+    "content": "Proof-of-concept code surfaced on underground forums hours after the vendor acknowledged the issue.",
+    "language": "en",
+    "location": "London, UK"
+  },
+  {
+    "source": {"id": "bleepingcomputer", "name": "BleepingComputer"},
+    "author": "Sergiu Gatlan",
+    "title": "Jordanian pleads guilty to selling access to 50 corporate networks",
+    "description": "40-year-old Feras Khalil Ahmad Albashiti has entered a guilty plea to charges of fraud involving access credentials. Albashiti's sentencing before U.S. District Judge Michael A. Shipp is scheduled for May 11, 2026.",
+    "url": "https://www.bleepingcomputer.com/news/security/jordanian-pleads-guilty-to-selling-access-to-50-corporate-networks/",
+    "urlToImage": "https://www.bleepstatic.com/content/hl-images/2026/01/19/hacker.jpg",
+    "publishedAt": "2026-01-16T14:45:00Z",
+    "content": "Analysts observed rotating domains and short-lived URLs to hinder takedowns.",
+    "language": "en",
+    "location": "Singapore"
+  },
+  {
+    "source": {"id": "the-hacker-news", "name": "The Hacker News"},
+    "author": "Ravie Lakshmanan",
+    "title": "Weekly Recap: Fortinet Exploits, RedLine Clipjack, NTLM Crack, Copilot Attack & More",
+    "description": "In cybersecurity, the line between a normal update and a serious incident keeps getting thinner. Systems that once felt reliable are now under pressure from constant change. New AI tools, connected devices, and automated systems quietly create more ways in, often faster than security teams can react.",
+    "url": "https://thehackernews.com/2026/01/weekly-recap-fortinet-exploits-redline.html",
+    "urlToImage": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjfn1SBAkKZzvUvFxUuVea_4KYXozKlXG-6dDyXBZDwvc_b3-rDxdmhyphenhyphen1BVrjoSsCReCbC28V3ta7Wo00qmg6zk3cuiezDIp3g8Noqbx4sEbmDlCN7aF6LCFZWLn5a0RS5iaKfd4pyU2M7MiIF63xpRv9XbPL1dP08O2L0UyGKCf22cFB6IsH39VQTIhQ7E/s1600-e365/recap.jpg",
+    "publishedAt": "2026-01-15T09:20:00Z",
+    "content": "The package received 200k weekly downloads before the incident was flagged.",
+    "language": "en",
+    "location": "Berlin, Germany"
+  },
+  {
+    "source": {"id": "securityweek", "name": "SecurityWeek"},
+    "author": "Ionut Arghire",
+    "title": "UK Government Acknowledges It Is Investigating Cyber Incident After Media Reports",
+    "description": "The British government said Friday it is investigating a “cyber incident” following news reports that hackers linked to China have gained access to thousands of confidential documents held by the Foreign,  and Development Office.",
+    "url": "https://www.securityweek.com/uk-government-acknowledges-it-is-investigating-cyber-incident-after-media-reports/",
+    "urlToImage": "https://www.securityweek.com/wp-content/uploads/2025/10/China-espionage.jpeg",
+    "publishedAt": "2026-01-14T11:05:00Z",
+    "content": "Campaign targets EU financial institutions with localized lures.",
+    "language": "en",
+    "location": "Amsterdam, Netherlands"
+  },
+  {
+    "source": {"id": "darkreading", "name": "Dark Reading"},
+    "author": "Kelly Jackson Higgins",
+    "title": "Dark Reading Confidential: Stop Secrets Creep Across Developer Platforms",
+    "description": "Dark Reading Confidential Episode 13: Developers are exposing their organizations' most sensitive information; our guests explain why it's happening and how to stop it.",
+    "url": "https://www.darkreading.com/cybersecurity-operations/stop-secrets-creep-across-developer-platforms",
+    "urlToImage": "https://eu-images.contentstack.com/v3/assets/blt6d90778a997de1cd/blt0469f94bd17817ff/6642699959fdc64aa5f9c5fa/dark-reading-confidential-logo-sq.jpg?width=1280&auto=webp&quality=80&disable=upscale",
+    "publishedAt": "2026-01-13T07:55:00Z",
+    "content": "Exploit chains demonstrated lateral movement from corporate IT into OT networks.",
+    "language": "en",
+    "location": "Tokyo, Japan"
+  }
+]
