@@ -1179,13 +1179,6 @@ def create_dynamic_map(data, selected_date=None, threat_filter=None):
     )
 
     
-    # FIXED: Update marker appearance for scatter_mapbox
-    # For scatter_mapbox, marker properties should be set directly in the trace
-    for trace in fig.data:
-        trace.marker.opacity = 0.9
-        trace.marker.sizemode = 'diameter'
-        trace.marker.sizeref = 1
-    
     # Add custom legend annotation
     fig.add_annotation(
         x=0.02,
