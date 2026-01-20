@@ -8,26 +8,6 @@ from textblob import TextBlob
 # --- CONFIGURATION ---
 NEWS_API_KEY = "1b3032a666244577a46f36d4e1580def"  
 
-# --- HELPER FUNCTIONS ---
-def normalize_text(text):
-    """Normalize text."""
-    return str(text).strip() if text else ""
-
-def extract_location_from_text(text):
-    """Extract location from text."""
-    return "Global" if not text else "India"
-
-def calculate_real_threat_score(text):
-    """Calculate threat score from text."""
-    if not text:
-        return 5.0
-    score = 5.0
-    keywords = ['breach', 'attack', 'hack', 'threat', 'malware', 'exploit']
-    for kw in keywords:
-        if kw.lower() in str(text).lower():
-            score += 1.5
-    return min(10.0, score)
-
 def fetch_real_time_data():
     """Fetches REAL data from NewsAPI only."""
     data = []
@@ -1179,6 +1159,13 @@ def create_dynamic_map(data, selected_date=None, threat_filter=None):
     )
 
     
+    # FIXED: Update marker appearance for scatter_mapbox
+    # For scatter_mapbox, marker properties should be set directly in the trace
+    for trace in fig.data:
+        trace.marker.opacity = 0.9
+        trace.marker.sizemode = 'diameter'
+        trace.marker.sizeref = 1
+    
     # Add custom legend annotation
     fig.add_annotation(
         x=0.02,
@@ -1507,7 +1494,7 @@ def create_threat_prediction_insights(data):
     insights.append({
         'type': '📍 Location Pattern',
         'title': 'High-Risk Locations',
-        'description': ', '.join(hot_locations) if hot_locations else 'No data',
+        'description': f'{hot_locations[0]}, {hot_locations[1]}, {hot_locations[2]}',
         'confidence': 'High',
         'impact': 'Increase surveillance in these areas'
     })
@@ -1739,14 +1726,14 @@ def main():
         col1, col2 = st.columns(2)
         with col1:
             # ✅ CORRECT
-            if st.button("🔄 Refresh Data", type="primary"):
+            if st.button("🔄 Refresh Data", use_container_width=True, type="primary"):
                 st.session_state.data_loaded = False
                 st.session_state.csv_modified_time = None
                 st.rerun()
         
         with col2:
             # ✅ CORRECT
-            if st.button("🧹 Clear Cache"):
+            if st.button("🧹 Clear Cache", use_container_width=True):
                 for key in ['data_loaded', 'current_data', 'csv_modified_time']:
                     if key in st.session_state:
                         del st.session_state[key]
@@ -1801,16 +1788,16 @@ def main():
         col1, col2 = st.columns(2)
         with col1:
             # ✅ Fixed
-            if st.button("India Only"):
+            if st.button("India Only", use_container_width=True):
                 st.session_state.location_filter = 'india'
         with col2:
             # ✅ Fixed
-            if st.button("International"):
+            if st.button("International", use_container_width=True):
                 st.session_state.location_filter = 'international'
         # Export Section
         st.markdown("<div class='section-header'>Data Export</div>", unsafe_allow_html=True)
         
-        if st.button("Export All Data", type="secondary"):
+        if st.button("Export All Data", use_container_width=True, type="secondary"):
             if st.session_state.current_data is not None:
                 csv_data = st.session_state.current_data.to_csv(index=False)
                 st.session_state.export_data = csv_data
@@ -2255,7 +2242,7 @@ def main():
         with col1:
             # Location analysis visualization
             fig_location, location_stats = create_location_analysis(filtered_data)
-            st.plotly_chart(fig_location, config={'displayModeBar': True})
+            st.plotly_chart(fig_location, use_container_width=True, config={'displayModeBar': True})
         
         with col2:
             st.markdown("**🏆 TOP 10 THREAT LOCATIONS**")
@@ -2377,7 +2364,7 @@ def main():
         with col1:
             # Active accounts visualization
             fig_accounts, account_stats = create_active_accounts_analysis(filtered_data)
-            st.plotly_chart(fig_accounts, config={'displayModeBar': True})
+            st.plotly_chart(fig_accounts, use_container_width=True, config={'displayModeBar': True})
         
         with col2:
             # Account details
@@ -2469,7 +2456,7 @@ def main():
         
         # Distribution charts
         fig_distribution = create_threat_distribution_chart(filtered_data)
-        st.plotly_chart(fig_distribution, config={'displayModeBar': True})
+        st.plotly_chart(fig_distribution, use_container_width=True, config={'displayModeBar': True})
         
         # Regional breakdown
         col1, col2, col3 = st.columns(3)
@@ -2656,7 +2643,7 @@ def main():
             )
             
             # Added unique key='tab5_export'
-            if st.button("📥 Export Account Data", key='tab5_export'):
+            if st.button("📥 Export Account Data", use_container_width=True, key='tab5_export'):
                 with st.spinner(f"Generating {export_format} export..."):
                     # Prepare data based on selections
                     export_data = filtered_data[include_columns] if include_columns else filtered_data
@@ -2823,7 +2810,7 @@ def main():
                 """, unsafe_allow_html=True)
                 
                 # Add clickable link button
-                st.link_button("🔗 Read Article", url)
+                st.link_button("🔗 Read Article", url, use_container_width=True)
 
 def load_demo_news_from_json():
     """Load bundled demo NewsAPI-like articles and map to dashboard schema."""
