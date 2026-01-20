@@ -1739,14 +1739,14 @@ def main():
         col1, col2 = st.columns(2)
         with col1:
             # ✅ CORRECT
-            if st.button("🔄 Refresh Data", width='stretch', type="primary"):
+            if st.button("🔄 Refresh Data", type="primary"):
                 st.session_state.data_loaded = False
                 st.session_state.csv_modified_time = None
                 st.rerun()
         
         with col2:
             # ✅ CORRECT
-            if st.button("🧹 Clear Cache", width='stretch'):
+            if st.button("🧹 Clear Cache"):
                 for key in ['data_loaded', 'current_data', 'csv_modified_time']:
                     if key in st.session_state:
                         del st.session_state[key]
@@ -1801,16 +1801,16 @@ def main():
         col1, col2 = st.columns(2)
         with col1:
             # ✅ Fixed
-            if st.button("India Only", width='stretch'):
+            if st.button("India Only"):
                 st.session_state.location_filter = 'india'
         with col2:
             # ✅ Fixed
-            if st.button("International", width='stretch'):
+            if st.button("International"):
                 st.session_state.location_filter = 'international'
         # Export Section
         st.markdown("<div class='section-header'>Data Export</div>", unsafe_allow_html=True)
         
-        if st.button("Export All Data", width='stretch', type="secondary"):
+        if st.button("Export All Data", type="secondary"):
             if st.session_state.current_data is not None:
                 csv_data = st.session_state.current_data.to_csv(index=False)
                 st.session_state.export_data = csv_data
@@ -2192,7 +2192,7 @@ def main():
     
     st.plotly_chart(
         fig_map,
-        width='stretch',
+        use_container_width=True,
         config={
             "displayModeBar": "hover",
             "displaylogo": False
@@ -2230,7 +2230,7 @@ def main():
     
     st.plotly_chart(
         fig_timeline,
-        width='stretch',
+        use_container_width=True,
         config={"displayModeBar": "hover", "displaylogo": False}
     )
     # Advanced Analysis Header
@@ -2255,7 +2255,7 @@ def main():
         with col1:
             # Location analysis visualization
             fig_location, location_stats = create_location_analysis(filtered_data)
-            st.plotly_chart(fig_location, width='stretch', config={'displayModeBar': True})
+            st.plotly_chart(fig_location, config={'displayModeBar': True})
         
         with col2:
             st.markdown("**🏆 TOP 10 THREAT LOCATIONS**")
@@ -2377,7 +2377,7 @@ def main():
         with col1:
             # Active accounts visualization
             fig_accounts, account_stats = create_active_accounts_analysis(filtered_data)
-            st.plotly_chart(fig_accounts, width='stretch', config={'displayModeBar': True})
+            st.plotly_chart(fig_accounts, config={'displayModeBar': True})
         
         with col2:
             # Account details
@@ -2469,7 +2469,7 @@ def main():
         
         # Distribution charts
         fig_distribution = create_threat_distribution_chart(filtered_data)
-        st.plotly_chart(fig_distribution, width='stretch', config={'displayModeBar': True})
+        st.plotly_chart(fig_distribution, config={'displayModeBar': True})
         
         # Regional breakdown
         col1, col2, col3 = st.columns(3)
@@ -2656,7 +2656,7 @@ def main():
             )
             
             # Added unique key='tab5_export'
-            if st.button("📥 Export Account Data", width='stretch', key='tab5_export'):
+            if st.button("📥 Export Account Data", key='tab5_export'):
                 with st.spinner(f"Generating {export_format} export..."):
                     # Prepare data based on selections
                     export_data = filtered_data[include_columns] if include_columns else filtered_data
@@ -2732,7 +2732,7 @@ def main():
             preview_data = filtered_data.head(10)
             st.dataframe(
                 preview_data,
-                width='stretch',
+                use_container_width=True,
                 height=400,
                 column_config={
                     'timestamp': st.column_config.DatetimeColumn(
@@ -2823,7 +2823,7 @@ def main():
                 """, unsafe_allow_html=True)
                 
                 # Add clickable link button
-                st.link_button("🔗 Read Article", url, width='stretch')
+                st.link_button("🔗 Read Article", url)
 
 def load_demo_news_from_json():
     """Load bundled demo NewsAPI-like articles and map to dashboard schema."""
