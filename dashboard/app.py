@@ -1507,7 +1507,7 @@ def create_threat_prediction_insights(data):
     insights.append({
         'type': '📍 Location Pattern',
         'title': 'High-Risk Locations',
-        'description': f'{hot_locations[0]}, {hot_locations[1]}, {hot_locations[2]}',
+        'description': ', '.join(hot_locations) if hot_locations else 'No data',
         'confidence': 'High',
         'impact': 'Increase surveillance in these areas'
     })
