@@ -1871,9 +1871,7 @@ def main():
                 label="Download CSV",
                 data=st.session_state.export_data,
                 file_name=f"devency_export_{datetime.now().strftime('%Y%m%d_%H%M%S')}.csv",
-                mime="text/csv",
-                width='stretch',
-                use_container_width=True
+                mime="text/csv"
             )
         
         # System Status
@@ -2507,15 +2505,13 @@ def main():
             
             # Export account data
             # Added unique key='tab2_export'
-            if st.button("📥 Export Account Data", use_container_width=True, key='tab2_export'):
+            if st.button("📥 Export Account Data", key='tab2_export'):
                 account_csv = account_stats.to_csv(index=False)
                 st.download_button(
                     label="⬇️ Download Account CSV",
                     data=account_csv,
                     file_name=f"devency_accounts_{datetime.now().strftime('%Y%m%d_%H%M%S')}.csv",
-                    mime="text/csv",
-                    width='stretch',
-                    use_container_width=True
+                    mime="text/csv"
                 )
     
     with tab3:
@@ -2776,9 +2772,7 @@ def main():
                         label=f"⬇️ Download {export_format}",
                         data=export_content,
                         file_name=filename,
-                        mime=mime_type,
-                        width='stretch',
-                        use_container_width=True
+                        mime=mime_type
                     )
         
         with col2:
