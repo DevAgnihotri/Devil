@@ -74,45 +74,47 @@
 
 Below are the screenshots from the screenshots/ folder.
 
-### dataexport.png
 
-![dataexport.png](screenshots/dataexport.png)
-
-### insights.png
-
-![insights.png](screenshots/insights.png)
-
-### Landingsection.png
+#### Landingsection.png
 
 ![Landingsection.png](screenshots/Landingsection.png)
 
-### news.png
-
-![news.png](screenshots/news.png)
-
-### regionalanalytics.png
-
-![regionalanalytics.png](screenshots/regionalanalytics.png)
-
-### sidebar.png
-
-![sidebar.png](screenshots/sidebar.png)
-
-### SystemOverview.png
+#### SystemOverview.png
 
 ![SystemOverview.png](screenshots/SystemOverview.png)
 
-### threathotspot.png
+#### WorldMap.png
 
-![threathotspot.png](screenshots/threathotspot.png)
+![WorldMap.png](screenshots/WorldMap.png)
 
-### trends.png
+#### trends.png
 
 ![trends.png](screenshots/trends.png)
 
-### WorldMap.png
+#### regionalanalytics.png
 
-![WorldMap.png](screenshots/WorldMap.png)
+![regionalanalytics.png](screenshots/regionalanalytics.png)
+
+#### dataexport.png
+
+![dataexport.png](screenshots/dataexport.png)
+
+#### threathotspot.png
+
+![threathotspot.png](screenshots/threathotspot.png)
+
+#### insights.png
+
+![insights.png](screenshots/insights.png)
+
+#### news.png
+
+![news.png](screenshots/news.png)
+
+#### sidebar.png
+
+![sidebar.png](screenshots/sidebar.png)
+
 
 ### 🎯 Mission Statement
 
