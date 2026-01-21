@@ -69,6 +69,51 @@
 </table>
 </div>
 
+
+## Screenshots
+
+Below are the screenshots from the screenshots/ folder.
+
+### dataexport.png
+
+![dataexport.png](screenshots/dataexport.png)
+
+### insights.png
+
+![insights.png](screenshots/insights.png)
+
+### Landingsection.png
+
+![Landingsection.png](screenshots/Landingsection.png)
+
+### news.png
+
+![news.png](screenshots/news.png)
+
+### regionalanalytics.png
+
+![regionalanalytics.png](screenshots/regionalanalytics.png)
+
+### sidebar.png
+
+![sidebar.png](screenshots/sidebar.png)
+
+### SystemOverview.png
+
+![SystemOverview.png](screenshots/SystemOverview.png)
+
+### threathotspot.png
+
+![threathotspot.png](screenshots/threathotspot.png)
+
+### trends.png
+
+![trends.png](screenshots/trends.png)
+
+### WorldMap.png
+
+![WorldMap.png](screenshots/WorldMap.png)
+
 ### 🎯 Mission Statement
 
 > _"To provide security analysts, researchers, and organizations with the most advanced, intuitive, and actionable threat intelligence platform — enabling proactive defense in an increasingly hostile digital landscape."_
